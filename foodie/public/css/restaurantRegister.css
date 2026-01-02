@@ -1,0 +1,57 @@
+body {
+    background-color: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+}
+/* Sidebar */
+.sidebar {
+    background-color: #020617;
+}
+
+.sidebar .nav-item {
+    color: #cbd5e1;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Hover effect for ALL items */
+.sidebar .nav-item:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* Active (current page) */
+.sidebar .nav-item.active {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+/* Registration Form Card */
+.form-card {
+    background-color: #1e293b;
+    color: #e5e7eb;
+    border-radius: 18px;
+    max-width: 700px;
+    border: none;
+}
+
+/* Inputs */
+.form-card input,
+.form-card textarea,
+.form-card select {
+    background-color: #020617;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+.form-card label {
+    color: #cbd5e1;
+}
+
+.form-card input:focus,
+.form-card textarea:focus,
+.form-card select:focus {
+    border-color: #facc15;
+    box-shadow: none;
+}

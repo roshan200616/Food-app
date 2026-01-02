@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Login</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Common Restaurant CSS -->
+    <link rel="stylesheet" href="/css/restaurantRegister.css">
+</head>
+<body>
+
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+
+        <!-- Sidebar -->
+        <div class="col-2 sidebar p-3">
+            <h5 class="text-white mb-4">Foodie App</h5>
+            <ul class="nav flex-column gap-3">
+                <li class="nav-item" onclick="location.href='/restaurants'">
+                    🏠 Home
+                </li>
+                <li class="nav-item" onclick="location.href='/restaurants/register'">
+                    🏪 Register
+                </li>
+                <li class="nav-item active" >
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-10 main-content p-4">
+
+            <div class="card form-card mx-auto" style="max-width: 420px;">
+                <div class="card-body p-4">
+
+                    <h4 class="mb-4 text-center">Restaurant Login</h4>
+
+                    <form action="/restaurant/login" method="POST" id="restaurant-login-form">
+
+                        <div class="mb-3">
+                            <label for="login-email" class="form-label">Email</label>
+                            <input type="email" id="login-email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="login-password" class="form-label">Password</label>
+                            <input type="password" id="login-password" name="password" class="form-control" required>
+                        </div>
+
+                        <button class="btn btn-warning w-100" id="login-btn">
+                            Login
+                        </button>
+
+                        <p class="text-center mt-3 text-muted">
+                            Don’t have an account?
+                            <a href="/restaurant/register" class="text-warning text-decoration-none">
+                                Register here
+                            </a>
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
