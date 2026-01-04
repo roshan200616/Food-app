@@ -10,23 +10,17 @@
 
     <!-- Common Restaurant CSS -->
     <link rel="stylesheet" href="/css/restaurantRegister.css">
+    <style>
+        .ResForm{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container-fluid vh-100" id="register-container">
-        <div class="row h-100">
-
-            <!-- Sidebar -->
-            <div class="col-2 sidebar p-3" id="sidebar">
-                <h5 class="text-white mb-4" id="app-title">Foodie App</h5>
-                <ul class="nav flex-column gap-3" id="sidebar-menu">
-                    <li class="nav-item" id="nav-home" onclick="location.href='/restaurants'">🏠 Home</li>
-                    <li class="nav-item active" id="nav-register">🏪 Register</li>
-                    <li class="nav-item" id="nav-login" onclick="location.href='/restaurants/login'">🔐 Login</li>
-                </ul>
-            </div>
-
+    <div class="container-fluid vh-100 ResForm" id="register-container">
             <!-- Main Content -->
             <div class="col-10 main-content p-4" id="main-content">
 

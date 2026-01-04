@@ -45,6 +45,7 @@ router.get("/register",(req,res)=>{
          console.log(err.message)
     }
 })
+
 router.get("/login",(req,res)=>{
     try{
          res.render("pages/restaurant/restaurantLogin.ejs")

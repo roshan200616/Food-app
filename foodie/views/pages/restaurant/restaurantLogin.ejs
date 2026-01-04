@@ -16,23 +16,7 @@
 <body>
 
 <div class="container-fluid vh-100">
-    <div class="row h-100">
-
-        <!-- Sidebar -->
-        <div class="col-2 sidebar p-3">
-            <h5 class="text-white mb-4">Foodie App</h5>
-            <ul class="nav flex-column gap-3">
-                <li class="nav-item" onclick="location.href='/restaurants'">
-                    🏠 Home
-                </li>
-                <li class="nav-item" onclick="location.href='/restaurants/register'">
-                    🏪 Register
-                </li>
-                <li class="nav-item active" >
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
-                </li>
-            </ul>
-        </div>
+    <div class="row h-100 d-flex justify-content-center align-items-center" >
 
         <!-- Main Content -->
         <div class="col-10 main-content p-4">
@@ -54,13 +38,13 @@
                             <input type="password" id="login-password" name="password" class="form-control" required>
                         </div>
 
-                        <button class="btn btn-warning w-100" id="login-btn">
+                        <button class="btn btn-warning w-100" id="login-btn" onclick="GetData(event)">
                             Login
                         </button>
 
                         <p class="text-center mt-3 text-muted">
                             Don’t have an account?
-                            <a href="/restaurant/register" class="text-warning text-decoration-none">
+                            <a href="/restaurants/register" class="text-warning text-decoration-none">
                                 Register here
                             </a>
                         </p>
@@ -75,4 +59,38 @@
 </div>
 
 </body>
+<script>
+    const emailDom = document.getElementById('login-email')
+    const passwordDom = document.getElementById('login-password')
+    async function GetData (event){
+        data = {
+            email : emailDom.value,
+            password : passwordDom.value
+        }
+        const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify(data);
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+            try {
+                const response = await fetch("http://localhost:3000/api/restaurants/login", requestOptions)
+                if(response.ok){
+                    window.location.href = 'http://localhost:3000/restaurants/dashborad'
+                }
+            }
+            catch(err){
+                console.log(err)
+                alert(err.message)
+            }
+            
+        }
+    
+
+</script>
 </html>
