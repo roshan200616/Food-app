@@ -29,6 +29,14 @@ app.use(session({
 app.use("/api/restaurants/",restaurantsApi)
 //ui router
 app.use("/restaurants/",restaurantsUi)
+app.get("/foddie", async (req, res) => {
+    try {
+        res.render("pages/main/home.ejs")
+    }
+    catch (err) {
+        console.log(err.message)
+    }
+})
 app.listen(3000,()=>{
    console.log("server running on http://localhost:3000")
 

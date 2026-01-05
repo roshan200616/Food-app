@@ -2,14 +2,6 @@ import express from "express"
 
 const router = express.Router()
 
-router.get("/", async (req, res) => {
-    try {
-        res.render("pages/restaurant/restaurantHome.ejs")
-    }
-    catch (err) {
-        console.log(err.message)
-    }
-})
 router.get("/menu",async(req,res)=>{
     try{
         const page = "menu"
@@ -17,6 +9,15 @@ router.get("/menu",async(req,res)=>{
     }
     catch(err){
         console.log(err.message)
+    }
+})
+router.get("/profile",(req,res)=>{
+    try{
+        const page = 'profile'
+        res.render('pages/restaurant/restaurantProfile.ejs',{page})
+    }
+    catch(err){
+        console,log(err.message)
     }
 })
 router.get("/menu/add",async(req,res)=>{
@@ -28,10 +29,15 @@ router.get("/menu/add",async(req,res)=>{
         console.log(err.message)
     }
 })
-router.get("/dashborad",(req,res)=>{
+router.get("/dashboard",(req,res)=>{
      try{
-         const page='dashborad'
-          res.render("pages/restaurant/restaurantDashborad.ejs",{page})
+        if(req.session.IsLogged){
+         const page='dashboard'
+          res.render("pages/restaurant/restaurantDashboard.ejs",{page})
+        }
+        else{
+         res.redirect("http://localhost:3000/restaurants/login")
+        }
     }
     catch(err){
          console.log(err.message)
@@ -54,6 +60,16 @@ router.get("/login",(req,res)=>{
     catch(err){
         console.log(err.message)
     }
+})
+router.get("/logout",(req,res)=>{
+    req.session.destroy((err)=>{
+        if(err){
+            res.status(500).json("error logout")
+        }
+        else{
+         res.redirect(302,"http://localhost:3000/restaurants/login")
+        }
+    })
 })
 
 

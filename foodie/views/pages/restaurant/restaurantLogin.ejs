@@ -38,11 +38,11 @@
                             <input type="password" id="login-password" name="password" class="form-control" required>
                         </div>
 
-                        <button class="btn btn-warning w-100" id="login-btn" onclick="GetData(event)">
+                        <button class="btn btn-warning w-100" id="login-btn" onclick="GetData()">
                             Login
                         </button>
 
-                        <p class="text-center mt-3 text-muted">
+                        <p class="text-center mt-3 text-white">
                             Don’t have an account?
                             <a href="/restaurants/register" class="text-warning text-decoration-none">
                                 Register here
@@ -62,8 +62,8 @@
 <script>
     const emailDom = document.getElementById('login-email')
     const passwordDom = document.getElementById('login-password')
-    async function GetData (event){
-        data = {
+    async function GetData (){
+       const data = {
             email : emailDom.value,
             password : passwordDom.value
         }
@@ -81,7 +81,7 @@
             try {
                 const response = await fetch("http://localhost:3000/api/restaurants/login", requestOptions)
                 if(response.ok){
-                    window.location.href = 'http://localhost:3000/restaurants/dashborad'
+                    window.location.href = 'http://localhost:3000/restaurants/dashboard'
                 }
             }
             catch(err){

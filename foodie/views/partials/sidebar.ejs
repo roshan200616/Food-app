@@ -1,9 +1,18 @@
-     <div class="col-2 sidebar p-3">
-            <h5 class="text-white mb-4">My Restaurant</h5>
-            <ul class="nav flex-column gap-3">
-                <li class="nav-item dashboard <%= page === 'dashboard' ? 'active' : ''%>"onclick="window.location.href=`/restaurants/dashborad`">📊 Dashboard</li>
-                <li class="nav-item orders" >📦 Orders</li>
-                <li class="nav-item menu <%= page === 'menu' ? 'active' : ''%>" onclick="window.location.href=`/restaurants/menu`">🍽 Menu</li>
-                <li class="nav-item profile">👤 Profile</li>
-            </ul>
-        </div>
+<div class="col-2 sidebar p-3">
+    <h5 class="text-white mb-4">My Restaurant</h5>
+    <ul class="nav flex-column gap-3">
+        <li class="nav-item dashboard <%= page === 'dashboard' ? 'active' : ''%>"
+            onclick="window.location.href=`/restaurants/dashboard`">📊 Dashboard</li>
+        <li class="nav-item orders">📦 Orders</li>
+        <li class="nav-item menu <%= page === 'menu' ? 'active' : ''%>"
+            onclick="window.location.href=`/restaurants/menu`">🍽 Menu</li>
+        <li class="nav-item profile <%= page === 'profile' ? 'active' : ''%>"
+            onclick="window.location.href=`/restaurants/profile`">👤 Profile</li>
+        <li class="nav-item text-danger" onclick="window.location.href='/restaurants/logout'">
+            🚪 Logout
+        </li>
+
+
+
+    </ul>
+</div>

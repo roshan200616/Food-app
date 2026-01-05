@@ -10,11 +10,6 @@
     <%- include('../../partials/head.ejs') %>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #1c1c1c;
-        }
 
         /* HERO */
         .hero {
@@ -50,18 +45,30 @@
 
         footer {
             font-size: 14px;
+            color:cbd5e1 ;
         }
         .register{
             background-color: transparent;
             border-color: transparent;
         }
+     
+        ::-webkit-scrollbar{
+              width: 1px;
+        }
+        .nav{
+            position: sticky;
+            top: 0px;
+            background-color: #0F172A;
+            
+        }
+     
     </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light position-absolute w-100 px-5">
+<nav class="navbar navbar-expand-lg navbar-dark   px-5 nav ">
     <a class="navbar-brand fw-bold text-white" href="/">
         FoodieApp
     </a>
@@ -93,8 +100,7 @@
     </div>
 </section>
 
-<!-- MAIN OPTIONS (CORE ZOMATO PATTERN) -->
-<section class="container mt-5">
+<section class="container mt-5 content">
     <div class="row g-4">
 
         <div class="col-md-4">
@@ -138,13 +144,13 @@
 
 <!-- SIMPLE INFO SECTION -->
 <section class="container mt-5 text-center">
-    <p class="text-muted">
+    <p class="text-white">
         FoodieApp helps you discover great food experiences around you.
     </p>
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center text-muted mt-5 mb-4">
+<footer class="text-center text-white mt-5 mb-4">
     © 2025 FoodieApp
 </footer>
 
