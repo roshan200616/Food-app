@@ -26,19 +26,19 @@
 
                     <h4 class="mb-4 text-center">Restaurant Login</h4>
 
-                    <form action="/restaurant/login" method="POST" id="restaurant-login-form">
+                    <form method="post" onsubmit="GetData(event)">
 
                         <div class="mb-3">
                             <label for="login-email" class="form-label">Email</label>
-                            <input type="email" id="login-email" name="email" class="form-control" required>
+                            <input type="email" id="login-email" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="login-password" class="form-label">Password</label>
-                            <input type="password" id="login-password" name="password" class="form-control" required>
+                            <input type="password" id="login-password"  class="form-control" required>
                         </div>
 
-                        <button class="btn btn-warning w-100" id="login-btn" onclick="GetData()">
+                        <button class="btn btn-warning w-100" id="login-btn" type="submit">
                             Login
                         </button>
 
@@ -62,7 +62,8 @@
 <script>
     const emailDom = document.getElementById('login-email')
     const passwordDom = document.getElementById('login-password')
-    async function GetData (){
+    async function GetData (event){
+        event.preventDefault()
        const data = {
             email : emailDom.value,
             password : passwordDom.value
@@ -83,10 +84,14 @@
                 if(response.ok){
                     window.location.href = 'http://localhost:3000/restaurants/dashboard'
                 }
+                else{
+                    const result = await response.json()
+                    alert(result)
+                }
             }
             catch(err){
-                console.log(err)
-                alert(err.message)
+                console.log(err.message)
+                 alert("server issue")
             }
             
         }

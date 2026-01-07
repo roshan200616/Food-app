@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
         res.send(err.message)
     }
 })
-router.get('/home',async(req,res)=>{
+router.get('/profile',async(req,res)=>{
     try{
         if(req.session.IsLogged){
             return res.status(200).json(req.session.user)
@@ -99,6 +99,7 @@ router.post('/login', async (req, res) => {
             else {
                 req.session.IsLogged = false
                 req.session.user = {}
+                console.log("invalid password")
                 return res.status(401).json("Invalid password")
             }
         }

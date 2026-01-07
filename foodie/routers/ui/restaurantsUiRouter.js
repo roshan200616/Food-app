@@ -11,10 +11,31 @@ router.get("/menu",async(req,res)=>{
         console.log(err.message)
     }
 })
-router.get("/profile",(req,res)=>{
+router.get("/profile", async(req,res)=>{
     try{
+         if(req.session.IsLogged){
         const page = 'profile'
-        res.render('pages/restaurant/restaurantProfile.ejs',{page})
+       console.log(req.headers.cookie)
+                const response = await fetch("http://localhost:3000/api/restaurants/profile", {
+            headers: {
+                cookie: req.headers.cookie
+            }
+        })
+       console.log(response)
+        if(response.status === 200){
+           const data = await response.json()
+            res.render('pages/restaurant/restaurantProfile.ejs',{page,data})
+        }
+        else{
+            res.render('pages/restaurant/restaurantProfile.ejs',{page,data:{}})
+
+        }
+    }
+    else{
+         res.redirect("http://localhost:3000/restaurants/login")
+
+    }
+       
     }
     catch(err){
         console,log(err.message)

@@ -29,7 +29,7 @@ app.use(session({
 app.use("/api/restaurants/",restaurantsApi)
 //ui router
 app.use("/restaurants/",restaurantsUi)
-app.get("/foddie", async (req, res) => {
+app.get("/foodie", async (req, res) => {
     try {
         res.render("pages/main/home.ejs")
     }
