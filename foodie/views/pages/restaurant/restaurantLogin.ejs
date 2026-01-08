@@ -12,6 +12,12 @@
 
     <!-- Common Restaurant CSS -->
     <link rel="stylesheet" href="/css/restaurantRegister.css">
+    <style>
+        .form-control:focus{
+            background-color: transparent;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -35,7 +41,10 @@
 
                         <div class="mb-3">
                             <label for="login-password" class="form-label">Password</label>
-                            <input type="password" id="login-password"  class="form-control" required>
+                            <div class="d-flex align-items-center">
+                            <input type="password" id="login-password"  class="form-control position-relative" required> 
+                            <i class="bi bi-eye position-absolute " style="right: 34px;" id="icon" onclick="togglePassword()"></i>
+                            </div>
                         </div>
 
                         <button class="btn btn-warning w-100" id="login-btn" type="submit">
@@ -95,7 +104,17 @@
             }
             
         }
-    
+        function togglePassword(){
+            iconDom = document.getElementById('icon')
+            if(passwordDom.type === 'password'){
+                passwordDom.type = 'text'
+                iconDom.classList.replace('bi-eye','bi-eye-slash') 
+            }
+            else{
+                passwordDom.type = 'password'
+                iconDom.classList.replace('bi-eye-slash','bi-eye') 
 
+            }
+        }
 </script>
 </html>

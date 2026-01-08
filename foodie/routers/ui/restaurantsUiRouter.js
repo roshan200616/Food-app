@@ -4,9 +4,16 @@ const router = express.Router()
 
 router.get("/menu",async(req,res)=>{
     try{
+         if(req.session.IsLogged){
+
         const page = "menu"
         res.render('pages/restaurant/restaurantMenu.ejs',{page})
     }
+    else{
+         res.redirect("http://localhost:3000/restaurants/login")
+
+    }
+}
     catch(err){
         console.log(err.message)
     }
@@ -43,12 +50,20 @@ router.get("/profile", async(req,res)=>{
 })
 router.get("/menu/add",async(req,res)=>{
     try{
+        if(req.session.IsLogged){
         const page = 'add'
         res.render('pages/restaurant/menuAdd.ejs',{page})
+        }
+        else{
+     res.redirect("http://localhost:3000/restaurants/login")
+
+        }
     }
+    
     catch(err){
         console.log(err.message)
     }
+
 })
 router.get("/dashboard",(req,res)=>{
      try{
