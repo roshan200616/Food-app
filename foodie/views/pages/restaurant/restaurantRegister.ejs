@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant Registration</title>
+    <title> Restaurant <%= page==='edit' ? 'Edit' :'Registration'%></title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +11,7 @@
     <!-- Common Restaurant CSS -->
     <link rel="stylesheet" href="/css/restaurantRegister.css">
     <style>
-        .ResForm{
+        .ResForm {
             display: flex;
             justify-content: center;
         }
@@ -21,81 +21,90 @@
 <body>
 
     <div class="container-fluid vh-100 ResForm" id="register-container">
-            <!-- Main Content -->
-            <div class="col-10 main-content p-4" id="main-content">
+        <!-- Main Content -->
+        <div class="col-10 main-content p-4" id="main-content">
 
-                <div class="card form-card mx-auto" id="register-card">
-                    <div class="card-body p-4">
-                        <h4 class="mb-4 text-center" id="register-title">
-                            Restaurant Registration
-                        </h4>
+            <div class="card form-card mx-auto" id="register-card">
+                <div class="card-body p-4">
+                    <h4 class="mb-4 text-center" id="register-title">
+                        Restaurant <%= page==='edit' ? 'Edit' :'Registration'%>
+                    </h4>
 
-                        <form>
+                    <form>
 
-                            <div class="row g-3">
+                        <div class="row g-3">
 
-                                <div class="col-6">
-                                    <label for="restaurant-name" class="form-label">Restaurant Name</label>
-                                    <input type="text" id="restaurant-name" name="name" class="form-control" required>
-                                </div>
+                            <div class="col-6">
+                                <label for="restaurant-name" class="form-label">Restaurant Name</label>
+                                <input type="text" id="restaurant-name" name="name" class="form-control"
+                                    value="<%- page==='edit'? data.name:''%>" required>
+                            </div>
 
-                                <div class="col-6">
-                                    <label for="owner-name" class="form-label">Owner Name</label>
-                                    <input type="text" id="owner-name" name="owner_name" class="form-control" required>
-                                </div>
+                            <div class="col-6">
+                                <label for="owner-name" class="form-label">Owner Name</label>
+                                <input type="text" id="owner-name" name="owner_name" class="form-control"
+                                    value="<%- page==='edit'? data.owner_name:''%>" required>
+                            </div>
 
-                                <div class="col-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" required>
-                                </div>
+                            <div class="col-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    value="<%- page==='edit'? data.email:''%>" required>
+                            </div>
 
-                                <div class="col-6">
-                                    <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" id="phone" name="phone" class="form-control" required>
-                                </div>
+                            <div class="col-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" id="phone" name="phone" class="form-control"
+                                    value="<%- page==='edit'? data.phone:''%>" required>
+                            </div>
 
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Address</label>
-                                    <textarea id="address" name="address" class="form-control" rows="2"
-                                        required></textarea>
-                                </div>
+                            <div class="col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea id="address" name="address" class="form-control" rows="2"
+                                    required>  <%- page==='edit'? data.address:''%></textarea>
+                            </div>
 
-                                <div class="col-6">
-                                    <label for="cuisine" class="form-label">Cuisine Type</label>
-                                    <select id="cuisine" name="cuisine" class="form-select">
-                                        <option>Indian</option>
-                                        <option>Chinese</option>
-                                        <option>Italian</option>
-                                        <option>Fast Food</option>
-                                    </select>
-                                </div>
+                            <div class="col-6">
+                                <label for="cuisine" class="form-label">Cuisine Type</label>
+                                <select id="cuisine" name="cuisine" class="form-select">
+                                    <option>Indian</option>
+                                    <option>Chinese</option>
+                                    <option>Italian</option>
+                                    <option>Fast Food</option>
+                                </select>
+                            </div>
+                            <% if(page !=='edit' ) {%>
                                 <div class="col-6">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" id="password" name="password" class="form-control" required>
                                 </div>
-
                                 <div class="col-6">
                                     <label for="confirm-password" class="form-label">Confirm Password</label>
                                     <input type="password" id="confirm-password" class="form-control" required>
                                 </div>
 
-                            </div>
+                                <% } %>
 
-                            <button class="btn btn-warning w-100 mt-4" id="register-btn" onclick="register(event)">
-                                Register Restaurant
-                            </button>
 
-                        </form>
 
-                    </div>
+                        </div>
+
+                        <button class="btn btn-warning w-100 mt-4" id="register-btn" onclick="registerAndUpdate(event)">
+                            <%= page==='edit' ?'Update': 'Register Restaurant' %>
+                        </button>
+
+                    </form>
+
                 </div>
-
             </div>
+
         </div>
+    </div>
     </div>
 
 </body>
 <script>
+    const pageName = '<%= page%>'
     const nameDom = document.getElementById("restaurant-name")
     const ownerNameDom = document.getElementById("owner-name")
     const emailDom = document.getElementById("email")
@@ -104,46 +113,69 @@
     const cuisineDom = document.getElementById("cuisine")
     const passwordDom = document.getElementById("password")
     const confirmPasswordDom = document.getElementById("confirm-password")
-    async function register(event) {
+    let data
+    let id
+    async function registerAndUpdate(event) {
         event.preventDefault()
-        const data = {
-            name: nameDom.value,
-            owner_name: ownerNameDom.value,
-            email: emailDom.value,
-            phone: phoneDom.value,
-            address: addressDom.value,
-            cuisine_type: cuisineDom.value,
-            password: passwordDom.value
-        }
-        if (passwordDom.value === confirmPasswordDom.value) {
-
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            const raw = JSON.stringify(data);
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-            try {
-                const response = await fetch("http://localhost:3000/api/restaurants", requestOptions)
-                if(response.ok){
-                    window.location.href = 'http://localhost:3000/restaurants/dashborad'
-                }
+        if (pageName === 'edit') {
+            id = '<%= data.restaurant_id%>'
+            data = {
+                name: nameDom.value,
+                owner_name: ownerNameDom.value,
+                email: emailDom.value,
+                phone: phoneDom.value,
+                address: addressDom.value,
+                cuisine_type: cuisineDom.value,
             }
-            catch(err){
-                console.log(err)
-                alert(err.message)
-            }
-            
         }
         else {
-            alert("not match the password")
+            data = {
+                name: nameDom.value,
+                owner_name: ownerNameDom.value,
+                email: emailDom.value,
+                phone: phoneDom.value,
+                address: addressDom.value,
+                cuisine_type: cuisineDom.value,
+                password: passwordDom.value
+            }
+            if (passwordDom.value !== confirmPasswordDom.value) {
+                alert("not match the password")
+                return
+
+            }
+
+
+        }
+
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(data);
+        const requestOptions = {
+            method: pageName === 'edit' ? "PUT" : "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+        const url = pageName === 'edit'
+            ? `http://localhost:3000/api/restaurants/${id}`
+            : `http://localhost:3000/api/restaurants`
+        const hrefPage = pageName === 'edit' ?
+            `http://localhost:3000/restaurants/profile`
+            : `http://localhost:3000/restaurants/dashboard`
+        try {
+            const response = await fetch(url, requestOptions)
+            if (response.ok) {
+                window.location.href = hrefPage
+            }
+        }
+        catch (err) {
+            console.log(err)
+            alert(err.message)
         }
     }
+
 </script>
 
 </html>

@@ -61,7 +61,7 @@ router.get("/:id", async (req, res) => {
             res.status(404).json({ message: 'Not found the restaurant ' })
         }
         else {
-            res.status(200).json(result)
+            res.status(200).json(result[0])
         }
     }
     catch (err) {
