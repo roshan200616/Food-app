@@ -169,6 +169,10 @@
             if (response.ok) {
                 window.location.href = hrefPage
             }
+            else{
+                
+                alert(await response.text())
+            }
         }
         catch (err) {
             console.log(err)

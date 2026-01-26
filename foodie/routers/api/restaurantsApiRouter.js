@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
             return res.status(404).json({ message: "Not found" })
         }
         else {
-            console.log(result)
             return res.status(200).json(result)
 
         }
@@ -30,19 +29,19 @@ router.get('/', async (req, res) => {
         res.send(err.message)
     }
 })
-router.get('/profile',async(req,res)=>{
-    try{
-        if(req.session.IsLogged){
+router.get('/profile', async (req, res) => {
+    try {
+        if (req.session.IsLogged) {
             return res.status(200).json(req.session.user)
         }
-        else{
+        else {
             return res.status(401).json('Please login first ')
         }
     }
-     catch(err){
+    catch (err) {
         console.log(err)
         return res.status(500).json(err.message)
-     }
+    }
 })
 router.get("/:id", async (req, res) => {
     try {
@@ -92,7 +91,7 @@ router.post('/login', async (req, res) => {
             const orginalPassword = result[0].password
             if (orginalPassword === password) {
                 req.session.IsLogged = true
-                const {password, ...safeuser } = result[0]
+                const { password, ...safeuser } = result[0]
                 req.session.user = safeuser
                 return res.status(200).json("User Logged")
             }
@@ -115,7 +114,17 @@ router.post('/', async (req, res) => {
         if (!name || !owner_name || !email || !phone || !address || !cuisine_type || !password) {
             return res.status(400).json({ message: "All fields are required" })
         }
+        const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        const phoneRex = /^[0-9]{10}$/
+        if (!emailRex.test(email)) {
+            return res.status(404).json('invalid email')
+        }
+        if (!phoneRex.test(phone)) {
+            return res.status(404).json('invalid phone number')
+
+        }
         const values = [name, email, phone, address, owner_name, cuisine_type, password]
+
         const result = await queryExec(`insert into 
         restaurants(name,email,phone,address,owner_name,cuisine_type,password)
         values(?,?,?,?,?,?,?)`, values)
@@ -134,28 +143,29 @@ router.post('/', async (req, res) => {
         return res.status(500).json({ message: err.message })
     }
 })
-router.put('/check',async(req,res)=>{
-   try{
-     const {is_open} = req.body
-     const id = req.session.user.restaurant_id
-     let result 
-     if(is_open === 'open'){
-      result = await queryExec(`update restaurants set is_open = ? where restaurant_id =?`,
-        [1,id]
-     )}
-     else{
+router.put('/check', async (req, res) => {
+    try {
+        const { is_open } = req.body
+        const id = req.session.user.restaurant_id
+        let result
+        if (is_open === 'open') {
             result = await queryExec(`update restaurants set is_open = ? where restaurant_id =?`,
-        [0,id])
-     }
-    
-     if(result.affectedRows === 0){
-        return res.status(404).json('Not found the restaurant')
-     }
-     else{
-        return res.status(200).json('updated successfully')
-     }
-   }
-    catch(err){
+                [1, id]
+            )
+        }
+        else {
+            result = await queryExec(`update restaurants set is_open = ? where restaurant_id =?`,
+                [0, id])
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json('Not found the restaurant')
+        }
+        else {
+            return res.status(200).json('updated successfully')
+        }
+    }
+    catch (err) {
         console.log(err)
         return res.status(500).json(err.message)
     }
@@ -177,7 +187,7 @@ router.put('/:id', async (req, res) => {
     }
     catch (err) {
         console.log(err)
-       return res.status(500).json({ message: err.message })
+        return res.status(500).json({ message: err.message })
     }
 })
 

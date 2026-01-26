@@ -33,8 +33,8 @@ router.get("/profile", async (req, res) => {
             const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)
             if (response.status === 200) {
                 const data = await response.json()
-                
-                res.render('pages/restaurant/restaurantProfile.ejs', { page,data })
+
+                res.render('pages/restaurant/restaurantProfile.ejs', { page, data })
             }
             else {
                 res.render('pages/restaurant/restaurantProfile.ejs', { page, data: {} })
@@ -53,9 +53,17 @@ router.get("/profile", async (req, res) => {
 })
 router.get("/menu", async (req, res) => {
     try {
-        if (req.session.IsLogged) {
+        if (req.session.IsLogged || req.session?.user) {
             const page = "menu"
-            res.render('pages/restaurant/restaurantMenu.ejs', { page })
+           const id = req.session.user.restaurant_id
+            const response = await fetch(`http://localhost:3000/api/menu/${id}`)
+            if (response.status === 200) {
+                const data = await response.json()
+                res.render('pages/restaurant/restaurantMenu.ejs', { page, data })
+            }
+            else {
+                res.render('pages/restaurant/restaurantMenu.ejs', { page, data: [] })
+            }
         }
         else {
             res.redirect("http://localhost:3000/restaurants/login")
@@ -86,7 +94,7 @@ router.get("/menu/add", async (req, res) => {
 router.get("/register", (req, res) => {
     try {
         const page = 'register'
-        res.render("pages/restaurant/restaurantRegister.ejs",{page,data:[]})
+        res.render("pages/restaurant/restaurantRegister.ejs", { page, data: [] })
     }
     catch (err) {
         console.log(err.message)
@@ -95,16 +103,16 @@ router.get("/register", (req, res) => {
 router.get("/edit", async (req, res) => {
     try {
         if (req.session.IsLogged) {
-             const page ='edit'
+            const page = 'edit'
             const id = req.session.user.restaurant_id
             const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)
             if (response.status === 200) {
                 const data = await response.json()
-                res.render("pages/restaurant/restaurantRegister.ejs", { data ,page})
+                res.render("pages/restaurant/restaurantRegister.ejs", { data, page })
 
             }
             else {
-                res.render("pages/restaurant/restaurantRegister.ejs", { data: [],page })
+                res.render("pages/restaurant/restaurantRegister.ejs", { data: [], page })
 
             }
         }

@@ -10,6 +10,19 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/restaurantMenu.css">
+    <style>
+        .card {
+            background-color: #1e293b;
+            color: white;
+            width: 48rem;
+        }
+        .action{
+            display: flex;
+        }
+        .deleteIcon{
+            border-color: transparent !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,30 +43,68 @@
                             Item</button>
                     </div>
 
-                    <div class="d-flex justify-content-center"> <!-- Menu Items Table -->
+                    <div class="d-flex justify-content-center">
                         <div class="col-8">
-                            <div class="card table-card p-3">
+                            <div class="card table-card p-3 card">
                                 <h5 class="mb-3">Menu Items</h5>
 
-                                <table class="table table-dark table-hover align-middle">
+                                <table class="table  table-dark text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th>S.no</th>
-                                            <th>Food</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
-                                            <th>Prepare Time</th>
-                                            <th>Action</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Prepareing time</th>
+                                            <th scope="col">Meal type</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Sugar</th>
+                                            <th scope="col">Calories</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%data.forEach(item=>{%>
+                                            <tr>
+                                                <td>
+                                                    <%=item.food_item%>
+                                                </td>
+                                                <td>
+                                                    <%=item.prepare_timing%>
+                                                </td>
+                                                <td>
+                                                    <%=item.meal_type%>
+                                                </td>
+                                                <td>
+                                                    <%=item.category%>
+                                                </td>
+                                                <td>
+                                                    <%=item.sugar%>
+                                                </td>
+                                                <td>
+                                                    <%=item.food_calories%>
+                                                </td>
+                                                <td>
+                                                    <%=item.price%>
+                                                </td>
+                                                <td class="action">
+                                                    <a href="admin/edit/<%= item.food_Item_id %>"
+                                                        class="text-reset text-decoration-none"
+                                                        style="text-decoration: none !important;">
+                                                        ✏️
+                                                    </a>
+                                                    <button onclick="deleteAdmin(<%=item.food_Item_id%>)" class="bg-transparent border deleteIcon">🗑️</button>
+                                                </td>
 
+
+                                            </tr>
+                                            <%})%>
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
                     </div>
+
 
                 </div>
 
