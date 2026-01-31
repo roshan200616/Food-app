@@ -9,6 +9,7 @@ import menuApi from "./routers/api/menuApiRouter.js"
 
 import restaurantsUi from "./routers/ui/restaurantsUiRouter.js"
 import costomerUi from "./routers/ui/customerUiRouter.js"
+import menuUi from "./routers/ui/menuUiRouter.js"
 
 const app = express()
 
@@ -32,7 +33,7 @@ app.use("/api/restaurants/",restaurantsApi)
 app.use("/api/menu/",menuApi)
 //ui router
 app.use("/restaurants/",restaurantsUi)
-
+app.use("/restaurants/menu/",menuUi)
 app.use("/customer/",costomerUi)
 
 app.get("/foodie", async (req, res) => {

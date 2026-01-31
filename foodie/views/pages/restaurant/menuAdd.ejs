@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Menu Item</title>
+    <title><%-page==='edit' ? 'Edit' : 'Add ' %> Menu Item</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Optional Custom CSS -->
     <link rel="stylesheet" href="/css/addMenu.css">
     <style>
-     .textColor{
-         color: #cbd5e1;
-    font-weight: 500;
-     }
+        .textColor {
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .custom_disable:disabled {
+            background-color: #1d2025;
+        }
     </style>
 </head>
 
@@ -22,73 +26,95 @@
         <div class="row h-100">
             <%- include('../../partials/sidebar.ejs') %>
                 <div class="container mt-4">
-                    <h3 class="mb-4">Add New Menu Item</h3>
+                    <h3 class="mb-4"><%-page==='edit' ? 'Edit' : 'Add New' %> Menu Item</h3>
 
-                    <form action="/menu/add" method="POST" enctype="multipart/form-data">
+                    <form>
                         <div class="mb-3">
                             <label for="food_name" class="form-label">Food Name</label>
                             <input type="text" class="form-control" id="food_name" name="food_name"
-                                placeholder="Enter food name" required>
+                                placeholder="Enter food name" value="<%- page==='edit'? data.food_item:''%>" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Price ($)</label>
                             <input type="number" step="0.01" class="form-control" id="price" name="price"
-                                placeholder="Enter price" required>
+                                placeholder="Enter price" value="<%- page==='edit'? data.price:''%>" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="prepare_time" class="form-label">Preparation Time (minutes)</label>
                             <input type="number" class="form-control" id="prepare_time" name="prepare_time"
-                                placeholder="Enter preparation time" required>
+                                placeholder="Enter preparation time" value="<%- page==='edit'? data.prepare_timing:''%>"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Meal Type</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Breakfast"
-                                    id="breakfast">
-                                <label class="form-check-label textColor" for="breakfast" >Breakfast</label>
+                                    id="breakfast" <%-page==='edit' && data.meal_type==='Breakfast' ? 'checked' : ''
+                                    %>>>
+                                <label class="form-check-label textColor" for="breakfast">Breakfast</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Lunch"
-                                    id="lunch">
+                                    id="lunch" <%-page==='edit' && data.meal_type==='Lunch' ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="lunch">Lunch</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Dinner"
-                                    id="dinner">
+                                    id="dinner" <%-page==='edit' && data.meal_type==='Dinner' ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="dinner">Dinner</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Snacks"
-                                    id="snacks">
+                                    id="snacks" <%-page==='edit' && data.meal_type==='Snacks' ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="snacks">Snacks</label>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Category</label>
-                            <select class="form-select" id="category" name="category">
-                                <option value="starter">Starter</option>
-                                <option value="main">Main Course</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="beverage">Beverage</option>
-                            </select>
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="Veg/Nonveg" class="form-label">Veg/Nonveg</label>
-                            <select class="form-select" id="Veg/Nonveg" name="category">
-                                <option value="" selected  >Choose</option>
-                                <option value="main">Veg</option>
-                                <option value="dessert">Nonveg</option>
+                            <select class="form-select" id="VegNonveg" name="category">
+                                <option value="">Choose</option>
+
+                                <option value="veg" <%=page==='edit' && data.category==='veg' ? 'selected' : '' %>
+                                    >
+                                    Veg
+                                </option>
+
+                                <option value="non-veg" <%=page==='edit' && data.category==='non-veg' ? 'selected' : ''
+                                    %>
+                                    >
+                                    Nonveg
+                                </option>
                             </select>
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="food_image" class="form-label">Food Image</label>
-                            <input type="file" class="form-control" id="food_image" name="food_image" accept="image/*">
                         </div>
+                        <%if(page !='edit' ) {%>
+                            <div class="mb-3">
+                                <label for="protein" class="form-label">Protein (g)</label>
+                                <input type="number" class="form-control custom_disable" id="protein" value="0"
+                                    disabled>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary">Add Item</button>
+                            <div class="mb-3">
+                                <label for="carbo" class="form-label">Carbohydrates (g)</label>
+                                <input type="number" class="form-control custom_disable" id="carbo" value="0" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fat" class="form-label">Fat (g)</label>
+                                <input type="number" class="form-control custom_disable" id="fat" value="0" disabled>
+                            </div>
+
+                            <%}%>
+                                <div class="mb-3">
+                                    <label for="food_image" class="form-label">Food Image</label>
+                                    <input type="file" class="form-control" id="food_image" name="food_image"
+                                        accept="image/*">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" onclick="Sumbit(event)">Add Item</button>
                     </form>
                 </div>
         </div>
@@ -97,5 +123,52 @@
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+    console.log(<% - JSON.stringify(data) %>)
+    const page = '<%-page%>'
+    const food_nameDom = document.getElementById('food_name')
+    const priceDom = document.getElementById('price')
+    const prepare_timeDom = document.getElementById('prepare_time')
+    const meal_type = [...document.querySelectorAll('input[name="meal_type[]"]:checked')].map((type) => {
+        type.value
+    })
+    const categoryDom = document.getElementById('category')
+    const VegNonvegDom = document.getElementById('Veg/Nonveg')
+
+    if (page !== 'edit') {
+        const calories = <% - JSON.stringify(data) %>
+            console.log(calories)
+        food_nameDom.addEventListener("input", () => {
+            const value = food_nameDom.value.trim().toLowerCase();
+            const isMatch = calories.some(
+                item => item.toLowerCase() === value
+            );
+
+            ["fat", "protein", "carbo"].forEach(id => {
+                document.getElementById(id).disabled = isMatch;
+            });
+        });
+    }
+
+    function Sumbit(event) {
+        event.preventDefault()
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const raw = JSON.stringify(data);
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:3000/api/menu/", requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+
+
+    }
+</script>
 
 </html>

@@ -20,11 +20,24 @@ router.get("/", async (req, res) => {
         return res.status(500).json(err.message)
     }
 })
+router.get("/calories", async (req, res) => {
+    try {
+        const data = await queryExec(`select food_name from food_calories`)
+        const food_items = data.map((Element) =>
+            Element.food_name
+        )
+        res.status(200).json(food_items)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json(err.message)
+    }
+})
 
 router.get("/:id", async (req, res) => {
     try {
         const id = req.params.id
-        const result = await queryExec(`select * from food_items where restaurant_id = ?`,[id])
+        const result = await queryExec(`select * from food_items where restaurant_id = ?`, [id])
         if (result.length === 0) {
             return res.status(404).json("No records")
         }
@@ -37,10 +50,26 @@ router.get("/:id", async (req, res) => {
         return res.status(500).json(err.message)
     }
 })
+router.get("/food/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        const result = await queryExec(`select * from food_items where food_Item_id =?`, [id])
+        if (result.length === 0) {
+            return res.status(404).json('Not found')
+        }
+        else {
+            return res.status(200).json(result[0])
+        }
+    }
+    catch (err) {
+        console.log(err)
+        return res.status(500).json(err.message)
+    }
+})
 router.post("/", async (req, res) => {
     try {
         const { food_item, prepare_timing, meal_type, price, category, sugar, carbs, protein, fat } = req.body
-        if(!req.session.IsLogged || !req.session?.user?.restaurant_id){
+        if (!req.session.IsLogged || !req.session?.user?.restaurant_id) {
             return res.status(401).json("Unauthorized")
         }
         const restaurant_id = req.session.user.restaurant_id
@@ -85,38 +114,38 @@ router.post("/", async (req, res) => {
         return res.status(500).json(err.message)
     }
 })
-router.put("/:id",async(req,res)=>{
-    try{
-       const food_id = req.params.id
-       const data = req.body
-       const values = Object.values(data)
-       const keys = Object.keys(data)
-       const set = keys.map(key=>`${key}=?`).join(',')
-       const result = await queryExec(`update food_items set ${set} where food_id = ?`,[...values,food_id])
-       if(result.affectedRows === 0){
-        return res.status(404).json("Not found")
-       }
-       else{
-        return res.status(200).json("updated successfully")
-       }
+router.put("/:id", async (req, res) => {
+    try {
+        const food_id = req.params.id
+        const data = req.body
+        const values = Object.values(data)
+        const keys = Object.keys(data)
+        const set = keys.map(key => `${key}=?`).join(',')
+        const result = await queryExec(`update food_items set ${set} where food_id = ?`, [...values, food_id])
+        if (result.affectedRows === 0) {
+            return res.status(404).json("Not found")
+        }
+        else {
+            return res.status(200).json("updated successfully")
+        }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         return res.status(500).json(err.message)
     }
 })
-router.delete("/:id",async(req,res)=>{
-    try{
+router.delete("/:id", async (req, res) => {
+    try {
         const food_id = req.params.id
-        const result = await queryExec(`delete from food_items where food_id = ?`,[food_id])
-        if(result.affectedRows===0){
-            return res.status(404).json({error:"Not found"})
+        const result = await queryExec(`delete from food_items where food_id = ?`, [food_id])
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Not found" })
         }
-        else{
+        else {
             return res.status(200).json("success")
         }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         return res.status(500).json(err.message)
     }
