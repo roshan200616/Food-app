@@ -51,27 +51,26 @@
                             <label class="form-label">Meal Type</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Breakfast"
-                                    id="breakfast" <%-page==='edit' && data.meal_type==='Breakfast' ? 'checked' : ''
-                                    %>>>
+                                    id="breakfast" <%-page==='edit' && data.meal_type.includes('Breakfast') ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="breakfast">Breakfast</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Lunch"
-                                    id="lunch" <%-page==='edit' && data.meal_type==='Lunch' ? 'checked' : '' %>>
+                                    id="lunch" <%-page==='edit' && data.meal_type.includes('Lunch')  ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="lunch">Lunch</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Dinner"
-                                    id="dinner" <%-page==='edit' && data.meal_type==='Dinner' ? 'checked' : '' %>>
+                                    id="dinner" <%-page==='edit' && data.meal_type.includes('Dinner')  ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="dinner">Dinner</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Snacks"
-                                    id="snacks" <%-page==='edit' && data.meal_type==='Snacks' ? 'checked' : '' %>>
+                                    id="snacks" <%-page==='edit' && data.meal_type.includes('Snacks')  ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="snacks">Snacks</label>
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="Veg/Nonveg" class="form-label">Veg/Nonveg</label>
                             <select class="form-select" id="VegNonveg" name="category">
@@ -90,21 +89,27 @@
                             </select>
 
                         </div>
+                        <div class="mb-3">
+                            <label for="prepare_time" class="form-label">Add sugar</label>
+                            <input type="number" class="form-control" id="sugar" name="sugar"
+                                placeholder="Enter preparation time" value="<%- page==='edit'? data.sugar:''%>"
+                                required>
+                        </div>
                         <%if(page !='edit' ) {%>
                             <div class="mb-3">
                                 <label for="protein" class="form-label">Protein (g)</label>
                                 <input type="number" class="form-control custom_disable" id="protein" value="0"
-                                    disabled>
+                                    >
                             </div>
 
                             <div class="mb-3">
                                 <label for="carbo" class="form-label">Carbohydrates (g)</label>
-                                <input type="number" class="form-control custom_disable" id="carbo" value="0" disabled>
+                                <input type="number" class="form-control custom_disable" id="carbo" value="0" >
                             </div>
 
                             <div class="mb-3">
                                 <label for="fat" class="form-label">Fat (g)</label>
-                                <input type="number" class="form-control custom_disable" id="fat" value="0" disabled>
+                                <input type="number" class="form-control custom_disable" id="fat" value="0" >
                             </div>
 
                             <%}%>
@@ -124,51 +129,89 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <script>
-    console.log(<% - JSON.stringify(data) %>)
-    const page = '<%-page%>'
+    const page = '<%- page %>'
+    const id = '<%= data.food_Item_id %>'
+  console.log(<%- JSON.stringify(data)%>)
     const food_nameDom = document.getElementById('food_name')
     const priceDom = document.getElementById('price')
     const prepare_timeDom = document.getElementById('prepare_time')
-    const meal_type = [...document.querySelectorAll('input[name="meal_type[]"]:checked')].map((type) => {
-        type.value
-    })
-    const categoryDom = document.getElementById('category')
-    const VegNonvegDom = document.getElementById('Veg/Nonveg')
+    const categoryDom = document.getElementById('VegNonveg')
+    const fatDom = document.getElementById("fat")
+    const proteinDom = document.getElementById("protein")
+    const carboDom = document.getElementById("carbo")
+    const sugarDom = document.getElementById("sugar")
 
-    if (page !== 'edit') {
-        const calories = <% - JSON.stringify(data) %>
-            console.log(calories)
-        food_nameDom.addEventListener("input", () => {
-            const value = food_nameDom.value.trim().toLowerCase();
-            const isMatch = calories.some(
-                item => item.toLowerCase() === value
-            );
-
-            ["fat", "protein", "carbo"].forEach(id => {
-                document.getElementById(id).disabled = isMatch;
-            });
-        });
+    let data = {
+        food_item: food_nameDom.value,
+        price: priceDom.value,
+        prepare_timing: prepare_timeDom.value,
+        category: categoryDom.value,
+        sugar: sugarDom.value
     }
 
-    function Sumbit(event) {
+    let isMatch = false
+    if (page !== "edit") {
+        const calories = <%- JSON.stringify(data) %>
+        console.log(data)
+        food_nameDom.addEventListener("input", () => {
+            const value = food_nameDom.value.trim().toLowerCase()
+            isMatch = calories.some(
+                item =>  item.trim().toLowerCase() === value
+            )
+            if(isMatch){
+                ["fat", "protein", "carbo"].forEach(element => {
+                    document.getElementById(element).disabled = isMatch
+                });
+            }
+
+
+            if (!isMatch) {
+                data.fat = fatDom.value
+                data.protein = proteinDom.value
+                data.carbo = carboDom.value
+            }
+        })
+    }
+    async function Sumbit(event) {
         event.preventDefault()
+
+
+        const meal_typeDom = Array.from(
+            document.querySelectorAll('input[name="meal_type[]"]:checked')
+        ).map(el => el.value)
+        data.meal_type = meal_typeDom
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         const raw = JSON.stringify(data);
         const requestOptions = {
-            method: "POST",
+            method: page === "edit" ? "PUT" : "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
+        const url = page === "edit"
+            ? `http://localhost:3000/api/menu/${id}`
+            : `http://localhost:3000/api/menu`
+        try {
 
-        fetch("http://localhost:3000/api/menu/", requestOptions)
-            .then((response) => response.text())
-            .then((result) => console.log(result))
-            .catch((error) => console.error(error));
 
-
+            fetch(url, requestOptions)
+                .then(async (response) => {
+                    if (response.ok) {
+                        window.location.href = "http://localhost:3000/restaurants/menu"
+                    }
+                    else {
+                        const error = await response.text()
+                        console.log(error)
+                    }
+                })
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
+
 </script>
+
 
 </html>
