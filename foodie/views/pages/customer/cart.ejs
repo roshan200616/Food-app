@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #212529;
+            color: white;
+        }
+
+        .navbar {
+            background: #2f353a;
+        }
+
+        .cart-card {
+            background: #2f353a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .btn-checkout {
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark px-4">
+    <h4>🛒 Your Cart</h4>
+    <a href="/" class="btn btn-success">Back</a>
+</nav>
+
+<!-- Cart Items -->
+<div class="container mt-4">
+    <div id="cartItems"></div>
+
+    <div class="mt-4">
+        <h4>Total Items: <span id="totalItems">0</span></h4>
+        <button class="btn btn-success btn-checkout mt-2">Checkout</button>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartContainer = document.getElementById("cartItems");
+    const totalItems = document.getElementById("totalItems");
+
+    function loadCart() {
+        cartContainer.innerHTML = "";
+
+        if (cart.length === 0) {
+            cartContainer.innerHTML = "<p>Your cart is empty 😢</p>";
+            totalItems.innerText = 0;
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.classList.add("cart-card");
+
+            div.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>${item}</h5>
+                    <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button>
+                </div>
+            `;
+
+            cartContainer.appendChild(div);
+        });
+
+        totalItems.innerText = cart.length;
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+    }
+
+    loadCart();
+</script>
+
+</body>
+</html>

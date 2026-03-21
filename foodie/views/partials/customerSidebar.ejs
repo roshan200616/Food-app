@@ -1,0 +1,19 @@
+<div style="width: auto;" class="col-2 sidebar p-3">
+    <h5 class="text-white mb-4">My Restaurant</h5>
+    <ul class="nav flex-column gap-3">
+        <li class="nav-item dashboard <%= page === 'home' ? 'active' : ''%>"
+            >🏠 Home
+</li>
+        <li class="nav-item orders">📦 Orders</li>
+        <li class="nav-item menu <%= page === 'menu' ? 'active' : ''%>"
+            >🍽 Menu</li>
+        <li class="nav-item profile <%= page === 'profile' ? 'active' : ''%>"
+            >👤 Profile</li>
+        <li class="nav-item text-danger">
+            🚪 Logout
+        </li>
+
+
+
+    </ul>   
+</div>

@@ -10,11 +10,21 @@ router.get("/login", (req, res) => {
         console.log(err.message)
     }
 })
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", async (req, res) => {
     try {
         if (req.session.IsLogged) {
             const page = 'dashboard'
-            res.render("pages/restaurant/restaurantDashboard.ejs", { page })
+            const id = req.session.user.restaurant_id
+            const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)
+            if(response.status === 200){
+                const data = await response.json()
+                res.render("pages/restaurant/restaurantDashboard.ejs", { page,data })
+
+            }
+            else{
+                res.render("pages/restaurant/restaurantDashboard.ejs",{page,data:{}})
+            }
+            
         }
         else {
             res.redirect("http://localhost:3000/restaurants/login")

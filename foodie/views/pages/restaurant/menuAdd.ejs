@@ -18,6 +18,19 @@
         .custom_disable:disabled {
             background-color: #1d2025;
         }
+
+        .backButton {
+
+            height: 38px;
+            width: 80px;
+            border-radius: 8px;
+            padding-bottom: 6px;
+        }
+
+        .form-control::placeholder {
+            color: rgb(198, 198, 198);
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -51,22 +64,25 @@
                             <label class="form-label">Meal Type</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Breakfast"
-                                    id="breakfast" <%-page==='edit' && data.meal_type.includes('Breakfast') ? 'checked' : '' %>>
+                                    id="breakfast" <%-page==='edit' && data.meal_type.includes('Breakfast') ? 'checked'
+                                    : '' %>>
                                 <label class="form-check-label textColor" for="breakfast">Breakfast</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Lunch"
-                                    id="lunch" <%-page==='edit' && data.meal_type.includes('Lunch')  ? 'checked' : '' %>>
+                                    id="lunch" <%-page==='edit' && data.meal_type.includes('Lunch') ? 'checked' : '' %>>
                                 <label class="form-check-label textColor" for="lunch">Lunch</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Dinner"
-                                    id="dinner" <%-page==='edit' && data.meal_type.includes('Dinner')  ? 'checked' : '' %>>
+                                    id="dinner" <%-page==='edit' && data.meal_type.includes('Dinner') ? 'checked' : ''
+                                    %>>
                                 <label class="form-check-label textColor" for="dinner">Dinner</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="meal_type[]" value="Snacks"
-                                    id="snacks" <%-page==='edit' && data.meal_type.includes('Snacks')  ? 'checked' : '' %>>
+                                    id="snacks" <%-page==='edit' && data.meal_type.includes('Snacks') ? 'checked' : ''
+                                    %>>
                                 <label class="form-check-label textColor" for="snacks">Snacks</label>
                             </div>
                         </div>
@@ -90,36 +106,36 @@
 
                         </div>
                         <div class="mb-3">
-                            <label for="prepare_time" class="form-label">Add sugar</label>
-                            <input type="number" class="form-control" id="sugar" name="sugar"
-                                placeholder="Enter preparation time" value="<%- page==='edit'? data.sugar:''%>"
-                                required>
+                            <label for="sugar" class="form-label">sugar</label>
+                            <input type="number" class="form-control custom_disable" id="sugar"
+                                value="<%- page==='edit'? data.sugar:''%> " placeholder="Enter sugar content">
                         </div>
-                        <%if(page !='edit' ) {%>
-                            <div class="mb-3">
-                                <label for="protein" class="form-label">Protein (g)</label>
-                                <input type="number" class="form-control custom_disable" id="protein" value="0"
-                                    >
-                            </div>
+                        <div class="mb-3">
+                            <label for="protein" class="form-label">Protein (g)</label>
+                            <input type="number" class="form-control custom_disable" id="protein"
+                                value="<%- page==='edit'? data.protein:''%>" placeholder=" Enter protein">
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="carbo" class="form-label">Carbohydrates (g)</label>
-                                <input type="number" class="form-control custom_disable" id="carbo" value="0" >
-                            </div>
+                        <div class="mb-3">
+                            <label for="carbo" class="form-label">Carbohydrates (g)</label>
+                            <input type="number" class="form-control custom_disable" id="carbo"
+                                value="<%- page==='edit'? data.carbs:''%>" placeholder="Enter carbohydrates">
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="fat" class="form-label">Fat (g)</label>
-                                <input type="number" class="form-control custom_disable" id="fat" value="0" >
-                            </div>
-
-                            <%}%>
-                                <div class="mb-3">
-                                    <label for="food_image" class="form-label">Food Image</label>
-                                    <input type="file" class="form-control" id="food_image" name="food_image"
-                                        accept="image/*">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary" onclick="Sumbit(event)">Add Item</button>
+                        <div class="mb-3">
+                            <label for="fat" class="form-label">Fat (g)</label>
+                            <input type="number" class="form-control custom_disable" id="fat"
+                                value="<%- page==='edit'? data.fat:''%>" placeholder="Enter fat">
+                        </div>
+                        <div class="mb-3">
+                            <label for="food_image" class="form-label">Food Image</label>
+                            <input type="file" class="form-control" id="food_image" name="food_image" accept="image/*">
+                        </div>
+                        <div>
+                            <button type="button" onclick="back()" class="backButton btn btn-danger"> ⬅ Back</button>
+                            <button type="submit" class="btn btn-success" onclick="Sumbit(event)">Add
+                                Item</button>
+                        </div>
                     </form>
                 </div>
         </div>
@@ -131,7 +147,7 @@
 <script>
     const page = '<%- page %>'
     const id = '<%= data.food_Item_id %>'
-  console.log(<%- JSON.stringify(data)%>)
+
     const food_nameDom = document.getElementById('food_name')
     const priceDom = document.getElementById('price')
     const prepare_timeDom = document.getElementById('prepare_time')
@@ -140,49 +156,51 @@
     const proteinDom = document.getElementById("protein")
     const carboDom = document.getElementById("carbo")
     const sugarDom = document.getElementById("sugar")
-
-    let data = {
-        food_item: food_nameDom.value,
-        price: priceDom.value,
-        prepare_timing: prepare_timeDom.value,
-        category: categoryDom.value,
-        sugar: sugarDom.value
-    }
-
+    const imageDom = document.getElementById("food_image");
+    let formData
     let isMatch = false
     if (page !== "edit") {
         const calories = <%- JSON.stringify(data) %>
-        console.log(data)
-        food_nameDom.addEventListener("input", () => {
-            const value = food_nameDom.value.trim().toLowerCase()
-            isMatch = calories.some(
-                item =>  item.trim().toLowerCase() === value
-            )
-            if(isMatch){
-                ["fat", "protein", "carbo"].forEach(element => {
-                    document.getElementById(element).disabled = isMatch
-                });
-            }
+            food_nameDom.addEventListener("input", () => {
+                const value = food_nameDom.value.trim().toLowerCase()
+                isMatch = calories.some(
+                    item => item.trim().toLowerCase() === value
+                )
+                if (isMatch) {
+                    ["fat", "protein", "carbo", "sugar"].forEach(element => {
+                        document.getElementById(element).disabled = isMatch
+                    });
+                }
 
 
-            if (!isMatch) {
-                data.fat = fatDom.value
-                data.protein = proteinDom.value
-                data.carbo = carboDom.value
-            }
-        })
+
+            })
     }
     async function Sumbit(event) {
         event.preventDefault()
 
-
         const meal_typeDom = Array.from(
             document.querySelectorAll('input[name="meal_type[]"]:checked')
         ).map(el => el.value)
-        data.meal_type = meal_typeDom
+        let meal_type = meal_typeDom
+        const str = food_nameDom.value.trim();
+        const food_name = str[0].toUpperCase() + str.slice(1)  
+        formData = {
+            food_item: food_name,
+            price: priceDom.value,
+            prepare_timing: prepare_timeDom.value,
+            category: categoryDom.value,
+            meal_type: meal_type
+        }
+
+        formData.fat = fatDom?.value || 0
+        formData.protein = proteinDom?.value || 0
+        formData.carbs = carboDom?.value || 0
+        formData.sugar = sugarDom?.value || 0
+        formData.food_calories = (formData.carbs * 4) + (formData.protein * 4) + (formData.fat * 9)
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        const raw = JSON.stringify(data);
+        const raw = JSON.stringify(formData);
         const requestOptions = {
             method: page === "edit" ? "PUT" : "POST",
             headers: myHeaders,
@@ -209,6 +227,9 @@
         catch (err) {
             console.log(err)
         }
+    }
+    function back() {
+        window.location.href = "http://localhost:3000/restaurants/menu"
     }
 
 </script>

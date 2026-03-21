@@ -1,6 +1,6 @@
+// import module 
 import express from "express";
-//impoert the  DB connection file
-
+//import the  DB connection file
 import queryExec from "../../DBconnection.js"
 const router = express.Router()
 
@@ -150,12 +150,11 @@ router.put('/check', async (req, res) => {
         let result
         if (is_open === 'open') {
             result = await queryExec(`update restaurants set is_open = ? where restaurant_id =?`,
-                [1, id]
-            )
+                [1, id])
         }
         else {
             result = await queryExec(`update restaurants set is_open = ? where restaurant_id =?`,
-                [0, id])
+                [0,id])
         }
 
         if (result.affectedRows === 0) {

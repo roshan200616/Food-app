@@ -11,15 +11,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/restaurantHome.css">
     <style>
-            .fead-btn {
-                transition: background-color 0.3s ease,
-                    transform 0.2s ease,
-                    box-shadow 0.3s ease;
-            }
-            .fead-btn.animate{
-                transform: scale(1.08);
-                box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-            }
+        .fead-btn {
+            transition: background-color 0.3s ease,
+                transform 0.2s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .fead-btn.animate {
+            transform: scale(1.08);
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -129,16 +130,18 @@
 
 </body>
 <script>
+    const is_open = `<%- JSON.stringify(data.is_open)%>`
     function status() {
         const btn = document.getElementById('statusBtn')
 
         btn.classList.add("animate")
-        setTimeout(()=> btn.classList.remove("animate"),400)
-        if (btn.classList.contains("btn-danger")) {
+        setTimeout(() => btn.classList.remove("animate"), 400)
+        if (is_open) {
             btn.classList.remove("btn-danger")
             btn.classList.add("btn-success")
             btn.classList.add("fade-in")
             btn.innerHTML = " Open 🟢"
+
         }
         else {
             btn.classList.remove("btn-success")

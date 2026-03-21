@@ -17,13 +17,14 @@
             width: fit-content;
             margin: 0px 0px 0px 57px;
         }
-        .action{
+
+        .action {
             display: flex;
         }
-        .deleteIcon{
+
+        .deleteIcon {
             border-color: transparent !important;
         }
-        
     </style>
 </head>
 
@@ -46,7 +47,7 @@
                     </div>
 
                     <div class="d-flex">
-                        <div class="col-8 menu" >
+                        <div class="col-8 menu">
                             <div class="card table-card p-3 card ">
                                 <h5 class="mb-3">Menu Items</h5>
 
@@ -94,7 +95,8 @@
                                                         style="text-decoration: none !important;">
                                                         ✏️
                                                     </a>
-                                                    <button onclick="deleteAdmin(<%=item.food_Item_id%>)" class="bg-transparent border deleteIcon">🗑️</button>
+                                                    <button onclick="deleteAdmin(<%=item.food_Item_id%>)"
+                                                        class="bg-transparent border deleteIcon">🗑️</button>
                                                 </td>
 
 
@@ -113,9 +115,31 @@
         </div>
     </div>
     </div>
-
 </body>
 <script>
-    console.log(<%- JSON.stringify(data)%>)
+    function deleteAdmin(id) {
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Cookie", "connect.sid=s%3AswzR8wIBCmKwboKdS0SDCmOK9by6I3AH.b51kB2kUPLfj5%2BmLVd%2BWB56UzUxkgAFBXcJeTs1yEfM");
+
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: myHeaders,
+            redirect: "follow"
+        };
+
+            fetch(`http://localhost:3000/api/menu/${id}`, requestOptions)
+                .then(async (response) =>{ 
+                    if (response.ok) {
+                    window.location.reload();
+                } else {
+                    const err = await response.text() 
+                    console.log(err)
+                }
+            })
+    }
 </script>
+
 </html>

@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
             return res.status(404).json("No records")
         }
         else {
+            
             return res.status(200).json(result)
         }
     }
@@ -69,31 +70,26 @@ router.get("/food/:id", async (req, res) => {
 })
 router.post("/", async (req, res) => {
     try {
-        let { food_item, prepare_timing, meal_type, price, category, sugar, carbo, protein, fat } = req.body
+        let { food_item, prepare_timing, meal_type, price, category, sugar, carbs, protein, fat ,food_calories} = req.body
         if (!req.session.IsLogged || !req.session?.user?.restaurant_id) {
             return res.status(401).json("Unauthorized")
         }
-        console.log(carbo,protein,fat)
         meal_type = Array.isArray(meal_type) ? meal_type.join(","): meal_type
-        console.log(meal_type)
 
         const restaurant_id = req.session.user.restaurant_id
-        let food_calories
         if (
             food_item === null ||
             prepare_timing === null ||
             meal_type === null ||
             price === null ||
-            category === null ||
-            sugar === null 
-
+            category === null 
         ) {
             return res.status(400).json("All fields are required")
         }
 
         const response = await queryExec(`select calories from food_calories where food_name =?`, [food_item])
         if (response.length === 0) {
-            food_calories = (carbo * 4) + (protein * 4) + (fat * 9)
+            food_calories = (carbs * 4) + (protein * 4) + (fat * 9)
             const result = await queryExec(`insert into food_calories(food_name,calories) values(?,?)`, [food_item, food_calories])
 
         }
@@ -103,7 +99,7 @@ router.post("/", async (req, res) => {
         }
         const result = await queryExec(`insert into food_items(food_item, prepare_timing, restaurant_id,meal_type, price, category,sugar,food_calories,carbs, protein,fat)
                 values(?,?,?,?,?,?,?,?,?,?,?)`,
-            [food_item, prepare_timing, restaurant_id, meal_type, price, category, sugar, food_calories, carbo, protein, fat])
+            [food_item, prepare_timing, restaurant_id, meal_type, price, category, sugar, food_calories, carbs, protein, fat])
         if (result.affectedRows === 0) {
             return res.status(400).json("Bad request")
         }
@@ -120,6 +116,7 @@ router.put("/:id", async (req, res) => {
     try {
         const food_id = req.params.id
         const data = req.body
+        console.log(data)
         data.meal_type = Array.isArray(data.meal_type)
             ? data.meal_type.join(',')
             : data.meal_type;
@@ -141,8 +138,8 @@ router.put("/:id", async (req, res) => {
 })
 router.delete("/:id", async (req, res) => {
     try {
-        const food_id = req.params.id
-        const result = await queryExec(`delete from food_items where food_id = ?`, [food_id])
+        const food_item_id = req.params.id
+        const result = await queryExec(`delete from food_items where food_item_id = ?`, [food_item_id])
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "Not found" })
         }
