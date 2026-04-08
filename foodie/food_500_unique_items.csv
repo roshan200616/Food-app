@@ -1,0 +1,501 @@
+food_name,calories,protein,fat,carbohydrate,sugar
+Chinese Saucy Paratha,513,25,21,56,6
+Indian Gravy Roll,344,25,4,52,8
+Chinese Classic Noodles,405,19,21,35,7
+Indian Cheese Paneer Dish,293,15,5,47,8
+Italian Cheese Pizza,369,15,13,48,7
+Indian Crispy Cutlet,255,22,7,26,6
+Italian Garlic Grill,267,11,3,49,0
+Chinese Tandoori Veg Mix,239,10,7,34,4
+Chinese Home Style Cutlet,267,19,11,23,3
+FastFood Deluxe Tikka,515,21,23,56,3
+Italian Butter Salad,248,3,16,23,8
+Italian Herb Grill,363,13,23,26,4
+Indian Chilli Cutlet,335,9,11,50,7
+Chinese Butter Stew,376,22,12,45,3
+Chinese Chilli Salad,211,4,11,24,4
+Indian Extra Cheese Fries,312,18,16,24,8
+Italian Tandoori Dosa,379,20,11,50,0
+Italian Cheese Grill,217,4,1,48,1
+Italian Home Style Cutlet,354,18,6,57,3
+FastFood Butter Noodles,333,6,21,30,0
+Indian Tandoori Salad,153,3,5,24,8
+Chinese Cheese Dosa,291,18,3,48,2
+Italian Tandoori Kebab,440,16,24,40,5
+FastFood Saucy Manchurian,187,4,3,36,8
+FastFood Special Rice Special,448,14,20,53,7
+Indian Spicy Pasta,291,11,11,37,3
+Italian Butter Uttapam,301,25,1,48,4
+Chinese Saucy Tikka,234,13,2,41,2
+Italian Butter Curry,468,9,24,54,6
+Chinese Herb Soup,475,21,19,55,5
+FastFood Masaledar Chicken Dish,287,15,11,32,3
+Indian Classic Roll,481,17,21,56,4
+Indian Cheese Uttapam,410,24,14,47,7
+FastFood Cheese Burger,393,9,17,51,0
+Italian Herb Paratha,437,20,21,42,0
+Indian Crispy Salad,319,25,7,39,6
+FastFood Street Style Biryani,331,17,3,59,1
+Indian Home Style Burger,433,20,17,50,4
+Italian Loaded Uttapam,360,12,16,42,4
+Chinese Street Style Cutlet,333,15,21,21,3
+FastFood Spicy Curry,425,10,25,40,4
+Chinese Classic Burger,368,13,12,52,7
+Italian Masaledar Fries,355,10,15,45,0
+Italian Dry Tikka,347,23,15,30,4
+Chinese Home Style Soup,293,20,13,24,5
+FastFood Butter Salad,426,21,18,45,6
+Indian Classic Soup,391,8,23,38,8
+Italian Tandoori Grill,212,5,12,21,2
+FastFood Chilli Noodles,479,10,23,58,4
+Italian Herb Manchurian,416,6,24,44,3
+Chinese Dry Paratha,225,15,5,30,8
+FastFood Roasted Grill,259,20,3,38,6
+Indian Special Noodles,229,9,5,37,4
+FastFood Chilli Kebab,289,3,5,58,3
+Indian Masaledar Sandwich,395,24,7,59,1
+FastFood Street Style Curry,301,5,9,50,3
+Italian Garlic Cutlet,340,7,20,33,8
+FastFood Spicy Sandwich,141,4,5,20,0
+Indian Deluxe Kebab,403,18,19,40,1
+Indian Dry Fries,316,15,8,46,5
+FastFood Saucy Grill,295,8,15,32,5
+Indian Saucy Rice Special,312,9,20,24,6
+Indian Gravy Chicken Dish,259,7,3,51,5
+Indian Herb Paratha,414,20,22,34,0
+Italian Herb Pizza,213,10,5,32,8
+FastFood Loaded Fried Rice,313,15,17,25,5
+Italian Herb Sandwich,241,11,1,47,0
+FastFood Spicy Uttapam,397,21,13,49,3
+Chinese Gravy Curry,379,20,23,23,2
+FastFood Tandoori Soup,327,7,11,50,0
+Chinese Garlic Masala,385,8,13,59,1
+Indian Roasted Dosa,368,9,16,47,5
+Chinese Crispy Biryani,381,21,21,27,2
+Italian Garlic Stew,357,11,13,49,7
+Chinese Chilli Curry,331,16,15,33,0
+Chinese Butter Veg Mix,284,11,16,24,1
+Italian Tandoori Uttapam,222,8,2,43,1
+Chinese Gravy Stew,371,13,23,28,8
+Chinese Home Style Chicken Dish,467,23,23,42,1
+Indian Butter Tikka,262,11,10,32,3
+FastFood Cheese Paratha,287,5,19,24,0
+Chinese Cheese Veg Mix,486,22,18,59,6
+Italian Saucy Mutton Dish,410,19,18,43,8
+FastFood Roasted Soup,271,16,11,27,1
+Italian Cheese Kebab,398,18,18,41,1
+FastFood Deluxe Wrap,489,18,25,48,7
+FastFood Home Style Grill,273,20,1,46,3
+FastFood Special Mutton Dish,338,24,10,38,1
+FastFood Deluxe Rice Bowl,232,9,12,22,3
+Chinese Crispy Grill,245,14,9,27,1
+FastFood Deluxe Masala,436,17,20,47,7
+Chinese Roasted Soup,317,9,17,32,7
+Italian Cheese Salad,449,17,21,48,0
+Italian Gravy Burger,277,16,1,51,2
+Indian Saucy Salad,364,3,20,43,2
+Italian Crispy Cutlet,366,20,6,58,4
+Italian Cheese Fried Rice,451,22,19,48,8
+Italian Classic Rice Bowl,126,3,2,24,0
+Chinese Classic Uttapam,277,19,1,48,5
+Indian Tandoori Rice Bowl,310,21,14,25,7
+Italian Cheese Veg Mix,284,12,8,41,6
+FastFood Dry Burger,401,3,17,59,7
+Chinese Classic Paneer Dish,212,4,4,40,7
+FastFood Classic Grill,389,9,17,50,1
+FastFood Cheese Uttapam,314,19,6,46,2
+FastFood Herb Soup,314,16,2,58,1
+Italian Gravy Chicken Dish,341,14,5,60,3
+Italian Classic Veg Mix,362,3,18,47,4
+Chinese Cheese Kebab,382,20,14,44,8
+FastFood Classic Rice Special,379,18,19,34,6
+FastFood Dry Pizza,203,5,3,39,3
+Chinese Spicy Uttapam,370,13,10,57,3
+Chinese Butter Grill,299,5,7,54,8
+Italian Home Style Grill,427,8,23,47,0
+FastFood Saucy Tikka,236,16,8,25,3
+Chinese Extra Cheese Grill,195,9,3,33,1
+Italian Dry Rice Special,433,8,21,53,0
+Italian Dry Biryani,435,9,19,57,1
+Italian Roasted Paratha,361,5,25,29,4
+Chinese Loaded Pasta,170,11,2,27,1
+Indian Crispy Manchurian,511,25,19,60,4
+Indian Loaded Masala,405,24,13,48,2
+Indian Crispy Paratha,334,25,14,27,0
+Indian Loaded Burger,403,25,23,24,0
+Chinese Classic Masala,287,5,11,42,1
+FastFood Garlic Burger,137,7,1,25,2
+Italian Tandoori Burger,281,18,9,32,1
+Italian Gravy Fries,268,12,4,46,1
+FastFood Gravy Masala,191,17,3,24,5
+FastFood Special Soup,473,24,17,56,8
+FastFood Saucy Fries,213,10,1,41,7
+Italian Home Style Paratha,317,15,17,26,6
+FastFood Spicy Veg Mix,353,11,9,57,7
+Chinese Street Style Chicken Dish,380,14,16,45,8
+FastFood Classic Noodles,245,10,1,49,3
+FastFood Classic Pasta,365,19,13,43,3
+FastFood Roasted Fried Rice,327,11,7,55,2
+FastFood Classic Stew,282,8,14,31,8
+FastFood Special Paneer Dish,183,5,7,25,7
+Italian Tandoori Biryani,228,19,4,29,3
+Italian Spicy Stew,294,16,10,35,1
+Indian Garlic Grill,256,9,12,28,0
+FastFood Cheese Curry,229,5,9,32,0
+Chinese Herb Veg Mix,159,9,3,24,8
+Chinese Dry Pasta,360,13,12,50,7
+Italian Cheese Curry,264,14,8,34,6
+Indian Saucy Mutton Dish,250,9,6,40,3
+Chinese Home Style Biryani,448,22,16,54,5
+Indian Classic Biryani,301,13,1,60,6
+Italian Gravy Veg Mix,437,10,21,52,2
+FastFood Tandoori Uttapam,333,6,21,30,5
+Chinese Classic Chicken Dish,292,11,16,26,7
+Italian Masaledar Curry,306,17,6,46,0
+Chinese Loaded Sandwich,170,5,6,24,3
+Chinese Garlic Curry,247,14,11,23,4
+Italian Gravy Paneer Dish,280,11,8,41,6
+FastFood Loaded Curry,271,9,11,34,4
+Italian Dry Pasta,408,20,24,28,4
+Chinese Deluxe Biryani,315,16,19,20,8
+Italian Garlic Fried Rice,367,13,23,27,2
+Italian Cheese Cutlet,444,16,20,50,0
+FastFood Deluxe Noodles,416,25,20,34,5
+Indian Dry Uttapam,455,22,19,49,8
+Chinese Home Style Rice Bowl,523,22,23,57,0
+FastFood Deluxe Salad,335,7,11,52,7
+FastFood Roasted Kebab,478,21,22,49,8
+Italian Street Style Fries,323,25,15,22,1
+Indian Deluxe Masala,378,12,10,60,1
+Italian Chilli Paratha,229,23,1,32,3
+Chinese Cheese Cutlet,310,19,10,36,3
+FastFood Street Style Rice Bowl,343,25,3,54,2
+Italian Cheese Biryani,378,5,22,40,3
+Chinese Home Style Pizza,422,17,14,57,5
+Italian Cheese Paratha,370,24,18,28,2
+Italian Special Burger,290,22,6,37,8
+FastFood Street Style Cutlet,360,21,16,33,5
+Indian Street Style Stew,386,9,18,47,8
+FastFood Herb Biryani,351,9,15,45,4
+Chinese Deluxe Stew,390,3,18,54,2
+Indian Classic Rice Special,359,11,19,36,8
+Italian Saucy Rice Special,412,17,20,41,6
+Indian Masaledar Uttapam,305,17,5,48,2
+Indian Loaded Biryani,351,13,19,32,3
+Indian Home Style Masala,281,19,13,22,4
+Chinese Loaded Roll,271,11,3,50,4
+Chinese Special Noodles,440,7,24,49,7
+Indian Street Style Fries,315,6,23,21,0
+FastFood Masaledar Burger,273,20,9,28,7
+Italian Deluxe Tikka,366,23,14,37,6
+Chinese Garlic Pasta,469,13,21,57,5
+Chinese Loaded Wrap,236,9,4,41,5
+Indian Street Style Fried Rice,341,14,21,24,6
+Italian Loaded Pasta,263,7,3,52,0
+FastFood Deluxe Pizza,453,16,25,41,3
+Indian Masaledar Burger,297,3,5,60,3
+Indian Home Style Uttapam,449,20,21,45,5
+Indian Gravy Soup,205,15,1,34,8
+FastFood Tandoori Paratha,438,18,22,42,4
+Chinese Street Style Soup,240,8,4,43,0
+Chinese Butter Kebab,357,24,17,27,6
+Chinese Tandoori Grill,415,15,15,55,5
+FastFood Dry Paratha,372,19,8,56,1
+Chinese Tandoori Masala,409,18,25,28,0
+Italian Deluxe Cutlet,294,20,14,22,3
+Indian Butter Cutlet,412,22,24,27,6
+Chinese Tandoori Paneer Dish,501,24,21,54,4
+Indian Dry Cutlet,278,13,10,34,7
+Indian Gravy Pasta,518,23,22,57,6
+Chinese Gravy Biryani,356,13,20,31,3
+FastFood Classic Cutlet,258,20,2,40,7
+Chinese Herb Wrap,394,25,22,24,4
+Chinese Crispy Tikka,347,22,15,31,1
+Italian Classic Grill,183,5,3,34,4
+Chinese Extra Cheese Rice Special,293,15,1,56,5
+Chinese Chilli Dosa,417,15,13,60,0
+Italian Classic Soup,337,6,25,22,2
+Indian Crispy Fried Rice,249,11,13,22,0
+FastFood Herb Veg Mix,233,20,1,36,3
+Italian Special Biryani,432,22,16,50,1
+Chinese Spicy Soup,381,18,17,39,8
+FastFood Cheese Tikka,439,23,19,44,3
+Chinese Spicy Burger,233,4,1,52,4
+Indian Spicy Rice Special,237,14,1,43,1
+Chinese Loaded Mutton Dish,324,6,12,48,0
+Italian Garlic Chicken Dish,203,22,3,22,5
+Indian Saucy Curry,218,18,6,23,1
+FastFood Herb Uttapam,336,23,8,43,4
+FastFood Tandoori Veg Mix,475,10,23,57,0
+Italian Special Uttapam,428,22,20,40,3
+FastFood Dry Tikka,247,6,15,22,8
+Italian Classic Rice Special,235,14,11,20,3
+FastFood Crispy Veg Mix,244,10,12,24,8
+Italian Street Style Sandwich,340,25,12,33,2
+Indian Garlic Wrap,384,8,24,34,8
+Indian Special Roll,288,24,8,30,7
+FastFood Gravy Biryani,166,15,2,22,0
+Italian Special Masala,340,6,24,25,2
+FastFood Cheese Wrap,434,18,14,59,6
+FastFood Extra Cheese Paneer Dish,172,9,4,25,1
+FastFood Herb Sandwich,182,11,6,21,4
+Indian Spicy Grill,356,11,24,24,5
+FastFood Classic Pizza,481,25,17,57,3
+Italian Butter Wrap,419,19,19,43,7
+Chinese Butter Pizza,277,3,9,46,3
+FastFood Herb Mutton Dish,297,20,5,43,5
+Chinese Extra Cheese Rice Bowl,275,13,7,40,8
+Chinese Special Curry,198,8,6,28,8
+Indian Cheese Salad,329,20,13,33,2
+Chinese Deluxe Dosa,454,17,22,47,0
+Italian Herb Paneer Dish,394,16,18,42,5
+Indian Roasted Roll,220,18,4,28,6
+FastFood Classic Sandwich,276,17,12,25,7
+Italian Saucy Manchurian,210,9,10,21,0
+Chinese Roasted Cutlet,413,15,25,32,0
+Indian Tandoori Masala,359,9,15,47,8
+Indian Tandoori Veg Mix,251,25,3,31,7
+Indian Butter Soup,467,6,23,59,4
+Chinese Roasted Pasta,213,13,5,29,2
+Italian Gravy Manchurian,275,9,11,35,8
+Chinese Spicy Veg Mix,388,20,24,23,7
+Indian Classic Grill,314,19,2,55,5
+Italian Deluxe Stew,488,16,24,52,3
+FastFood Spicy Kebab,342,21,6,51,4
+Indian Saucy Tikka,447,18,19,51,3
+Chinese Deluxe Sandwich,359,15,19,32,0
+FastFood Extra Cheese Wrap,442,21,18,49,3
+Indian Classic Masala,213,20,1,31,4
+Chinese Crispy Rice Bowl,395,12,19,44,0
+Italian Chilli Soup,239,23,3,30,3
+Indian Tandoori Pizza,351,16,7,56,7
+Chinese Herb Cutlet,336,9,12,48,1
+Italian Dry Rice Bowl,387,7,15,56,7
+Indian Extra Cheese Pizza,303,10,7,50,3
+Indian Gravy Salad,451,13,19,57,2
+Italian Dry Dosa,455,4,23,58,3
+Chinese Roasted Fried Rice,261,12,5,42,2
+FastFood Herb Cutlet,375,22,7,56,3
+FastFood Deluxe Paratha,379,24,19,28,3
+FastFood Masaledar Rice Bowl,218,10,2,40,5
+Chinese Masaledar Noodles,448,25,12,60,0
+Italian Street Style Fried Rice,249,11,1,49,5
+Chinese Deluxe Rice Bowl,413,13,17,52,4
+Italian Home Style Noodles,228,10,12,20,0
+Italian Crispy Fried Rice,451,13,19,57,0
+FastFood Home Style Cutlet,234,6,10,30,7
+FastFood Tandoori Chicken Dish,238,3,2,52,7
+Chinese Tandoori Fries,350,22,18,25,1
+Chinese Loaded Dosa,370,21,10,49,7
+Indian Loaded Grill,233,6,1,50,8
+Italian Chilli Cutlet,407,10,23,40,7
+Indian Cheese Dosa,446,16,22,46,2
+Italian Home Style Wrap,521,23,21,60,4
+Italian Herb Dosa,292,10,8,45,6
+Italian Crispy Tikka,366,8,22,34,6
+Indian Butter Noodles,495,16,23,56,4
+FastFood Street Style Stew,261,11,9,34,2
+Indian Deluxe Fries,238,7,10,30,1
+Italian Home Style Kebab,433,14,21,47,3
+Indian Classic Cutlet,400,14,24,32,7
+FastFood Deluxe Dosa,418,17,14,56,3
+FastFood Herb Fries,336,18,8,48,2
+Chinese Classic Paratha,321,19,9,41,0
+Italian Gravy Uttapam,398,7,18,52,3
+FastFood Dry Grill,394,9,14,58,1
+Indian Home Style Dosa,451,14,23,47,4
+Italian Extra Cheese Veg Mix,402,8,18,52,3
+Indian Tandoori Grill,446,5,22,57,2
+FastFood Cheese Soup,286,17,6,41,4
+Indian Classic Uttapam,208,9,4,34,4
+FastFood Roasted Stew,374,22,14,40,3
+Indian Spicy Tikka,123,4,3,20,7
+Italian Classic Paratha,477,5,25,58,8
+Chinese Dry Rice Special,246,8,6,40,2
+Indian Tandoori Soup,320,19,8,43,1
+Indian Saucy Dosa,367,16,7,60,8
+Indian Masaledar Pasta,194,24,2,20,4
+Indian Home Style Cutlet,327,18,3,57,4
+FastFood Butter Tikka,320,15,12,38,8
+Indian Roasted Pizza,336,21,4,54,5
+Italian Butter Dosa,461,10,21,58,6
+FastFood Cheese Sandwich,271,14,15,20,3
+Italian Home Style Fried Rice,188,9,4,29,1
+FastFood Dry Rice Special,241,13,9,27,6
+FastFood Street Style Roll,319,10,19,27,0
+FastFood Home Style Masala,208,16,4,27,3
+Italian Special Grill,370,18,22,25,2
+FastFood Home Style Paratha,368,19,16,37,2
+Chinese Cheese Biryani,239,20,7,24,1
+Chinese Chilli Burger,149,8,1,27,2
+FastFood Street Style Noodles,384,12,12,57,4
+Italian Garlic Burger,464,19,24,43,1
+Indian Herb Stew,140,5,4,21,4
+Indian Dry Manchurian,283,19,11,27,4
+Italian Street Style Kebab,316,14,12,38,6
+FastFood Masaledar Uttapam,300,13,16,26,2
+FastFood Loaded Dosa,176,7,4,28,5
+Indian Herb Uttapam,467,16,19,58,5
+FastFood Crispy Fried Rice,318,9,6,57,0
+Italian Tandoori Veg Mix,287,4,7,52,3
+Indian Extra Cheese Cutlet,344,22,12,37,2
+Italian Masaledar Soup,298,20,14,23,1
+Chinese Masaledar Pizza,478,10,22,60,5
+Indian Tandoori Rice Special,444,10,20,56,5
+Italian Butter Mutton Dish,227,6,11,26,1
+Chinese Butter Paneer Dish,316,25,8,36,5
+Chinese Butter Biryani,282,10,6,47,8
+Chinese Gravy Rice Special,445,23,17,50,6
+FastFood Dry Biryani,464,22,16,58,8
+Italian Home Style Curry,345,3,21,36,1
+Chinese Spicy Mutton Dish,273,21,5,36,6
+Italian Masaledar Fried Rice,324,23,12,31,6
+Italian Masaledar Masala,273,22,1,44,0
+Italian Classic Wrap,295,12,15,28,3
+FastFood Masaledar Curry,395,16,19,40,5
+Indian Home Style Manchurian,386,18,14,47,6
+FastFood Extra Cheese Rice Special,356,14,24,21,4
+Italian Crispy Sandwich,412,11,20,47,6
+FastFood Special Chicken Dish,345,18,13,39,4
+Italian Cheese Rice Bowl,396,12,12,60,0
+Indian Herb Roll,339,21,15,30,4
+FastFood Chilli Masala,227,10,7,31,5
+Indian Garlic Paneer Dish,319,16,15,30,2
+Chinese Loaded Soup,150,13,2,20,2
+Chinese Home Style Roll,401,13,25,31,3
+Italian Classic Chicken Dish,443,20,19,48,2
+FastFood Roasted Noodles,210,24,2,24,6
+Chinese Masaledar Sandwich,479,20,23,48,1
+FastFood Deluxe Pasta,276,22,8,29,2
+Indian Gravy Grill,292,4,8,51,4
+Indian Gravy Rice Special,293,11,13,33,1
+Chinese Loaded Fried Rice,349,6,21,34,6
+Indian Loaded Paneer Dish,463,4,23,60,5
+Indian Spicy Uttapam,167,6,3,29,4
+Chinese Butter Salad,407,9,23,41,4
+Indian Roasted Veg Mix,184,8,8,20,8
+FastFood Cheese Grill,437,17,17,54,3
+Italian Garlic Dosa,350,8,10,57,8
+Italian Street Style Rice Bowl,195,8,3,34,5
+FastFood Extra Cheese Stew,273,25,1,41,5
+Chinese Extra Cheese Paneer Dish,314,12,10,44,4
+Italian Spicy Salad,400,14,24,32,3
+Chinese Dry Chicken Dish,426,12,18,54,1
+Indian Spicy Fried Rice,380,8,12,60,7
+Indian Saucy Manchurian,368,5,16,51,7
+Italian Cheese Wrap,378,13,22,32,3
+Italian Saucy Chicken Dish,340,4,24,27,3
+Indian Deluxe Chicken Dish,313,14,17,26,7
+FastFood Extra Cheese Paratha,296,10,16,28,0
+Italian Street Style Paneer Dish,402,19,18,41,8
+FastFood Garlic Soup,210,5,10,25,8
+Italian Garlic Mutton Dish,493,21,21,55,3
+Chinese Extra Cheese Pizza,436,25,16,48,4
+FastFood Saucy Rice Special,315,7,23,20,0
+Indian Classic Sandwich,410,19,18,43,0
+Indian Cheese Biryani,411,14,15,55,2
+FastFood Herb Kebab,354,22,6,53,5
+FastFood Home Style Sandwich,370,17,22,26,2
+Chinese Street Style Rice Bowl,173,11,1,30,3
+Chinese Roasted Grill,380,18,8,59,4
+Indian Butter Chicken Dish,268,19,12,21,5
+Chinese Masaledar Stew,325,19,9,42,3
+Italian Masaledar Pasta,215,15,7,23,1
+FastFood Loaded Uttapam,292,23,8,32,5
+Italian Garlic Veg Mix,361,20,9,50,6
+Indian Extra Cheese Manchurian,334,15,6,55,0
+FastFood Masaledar Pasta,353,20,9,48,3
+Indian Spicy Fries,313,11,5,56,5
+FastFood Tandoori Pizza,314,21,14,26,1
+Italian Dry Cutlet,446,19,22,43,4
+Italian Loaded Sandwich,463,22,19,51,7
+Italian Street Style Roll,339,11,15,40,4
+Indian Street Style Chicken Dish,301,5,9,50,6
+Indian Spicy Wrap,298,15,14,28,8
+Italian Herb Wrap,462,23,18,52,3
+Chinese Butter Noodles,457,25,13,60,4
+Italian Deluxe Chicken Dish,320,6,20,29,6
+Indian Dry Kebab,209,10,5,31,2
+FastFood Home Style Wrap,414,17,22,37,7
+Chinese Loaded Manchurian,317,9,17,32,6
+Chinese Roasted Manchurian,512,24,24,50,2
+Chinese Special Stew,311,23,15,21,4
+Chinese Gravy Wrap,254,11,2,48,8
+Indian Garlic Chicken Dish,280,23,8,29,7
+FastFood Crispy Burger,375,17,23,25,3
+FastFood Dry Veg Mix,325,19,1,60,1
+Italian Deluxe Mutton Dish,276,9,16,24,5
+FastFood Home Style Chicken Dish,217,19,5,24,6
+Chinese Garlic Tikka,561,24,25,60,2
+Italian Garlic Noodles,330,9,10,51,8
+Chinese Classic Tikka,348,3,16,48,5
+Indian Cheese Mutton Dish,306,13,2,59,8
+Italian Crispy Stew,353,8,21,33,4
+Indian Classic Burger,467,20,19,54,7
+Italian Extra Cheese Grill,484,18,20,58,2
+Indian Butter Wrap,268,20,4,38,0
+Indian Garlic Stew,341,14,9,51,6
+Indian Butter Burger,415,18,23,34,6
+Italian Gravy Tikka,342,10,22,26,2
+Chinese Deluxe Pasta,337,3,13,52,4
+Chinese Tandoori Rice Special,397,17,21,35,5
+Indian Extra Cheese Kebab,213,10,9,23,1
+Italian Saucy Uttapam,224,16,4,31,3
+FastFood Special Noodles,369,13,21,32,2
+Italian Special Pasta,245,13,9,28,0
+Chinese Chilli Stew,270,7,14,29,6
+Italian Roasted Soup,409,15,13,58,3
+Italian Chilli Paneer Dish,336,16,4,59,3
+Indian Herb Sandwich,189,18,1,27,5
+Indian Extra Cheese Veg Mix,299,15,11,35,4
+Chinese Roasted Masala,210,15,2,33,5
+FastFood Crispy Soup,145,10,1,24,2
+Chinese Chilli Veg Mix,393,6,17,54,6
+Chinese Herb Pasta,301,3,9,52,1
+FastFood Gravy Paratha,372,14,16,43,7
+Italian Saucy Noodles,382,24,10,49,8
+Chinese Deluxe Paratha,338,10,14,43,7
+Chinese Loaded Masala,503,24,19,59,7
+Chinese Cheese Paneer Dish,265,7,5,48,8
+Italian Dry Wrap,358,16,22,24,4
+Chinese Tandoori Curry,209,8,5,33,3
+Indian Cheese Fried Rice,216,3,4,42,6
+Chinese Masaledar Wrap,324,12,8,51,0
+Indian Butter Fries,409,5,17,59,0
+Italian Tandoori Wrap,189,12,1,33,5
+FastFood Gravy Wrap,326,3,22,29,6
+Indian Masaledar Biryani,332,23,16,24,7
+Italian Street Style Stew,394,19,22,30,1
+Chinese Tandoori Burger,335,8,15,42,2
+Indian Cheese Kebab,410,19,14,52,3
+Indian Roasted Paratha,271,7,7,45,6
+Italian Classic Biryani,238,7,14,21,6
+FastFood Garlic Roll,478,25,18,54,1
+FastFood Garlic Wrap,220,3,12,25,2
+Indian Spicy Salad,270,4,2,59,1
+FastFood Special Uttapam,324,21,12,33,7
+FastFood Dry Soup,385,22,13,45,1
+Indian Extra Cheese Masala,221,24,5,20,8
+Indian Tandoori Dosa,328,17,12,38,0
+Chinese Spicy Kebab,379,12,23,31,7
+Chinese Saucy Mutton Dish,243,14,11,22,4
+Indian Dry Stew,259,12,11,28,6
+Italian Dry Noodles,296,9,20,20,5
+Italian Garlic Masala,256,22,4,33,8
+Chinese Spicy Cutlet,469,16,21,54,0
+Chinese Extra Cheese Biryani,339,20,11,40,7
+Indian Street Style Tikka,501,23,21,55,8
+Chinese Cheese Rice Special,485,10,25,55,6
+Chinese Special Masala,352,5,24,29,4
+FastFood Deluxe Roll,240,23,4,28,3
+Italian Special Rice Bowl,316,6,12,46,3
+Chinese Tandoori Soup,206,15,6,23,0
+Chinese Crispy Fried Rice,287,11,11,36,6
+Chinese Garlic Mutton Dish,297,7,5,56,6
+Italian Crispy Uttapam,250,18,6,31,2
+Indian Crispy Sandwich,237,9,13,21,8
+FastFood Saucy Stew,444,16,24,41,2
+Italian Roasted Curry,312,18,16,24,7
+Italian Masaledar Mutton Dish,238,10,10,27,8
+Chinese Gravy Mutton Dish,322,22,6,45,2
+FastFood Classic Kebab,323,5,11,51,4

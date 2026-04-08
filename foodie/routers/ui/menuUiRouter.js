@@ -48,14 +48,17 @@ router.get("/add", async (req, res) => {
     }
 
 })
+
 router.get("/edit/:id", async (req, res) => {
     try {
         if(req.session.IsLogged){
             const id = req.params.id
             const page = 'edit'
             const response = await fetch(`http://localhost:3000/api/menu/food/${id}`)
+
             if (response.status === 200) {
                 const data = await response.json()
+                console.log(data)
                 return res.render('pages/restaurant/menuAdd.ejs', { page,data })
             }
             else {

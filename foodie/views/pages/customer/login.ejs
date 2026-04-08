@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            background: #0f172a;
+            color: white;
+        }
+
+        .left {
+            width: 50%;
+            background: #020617;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .left h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .left p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .right {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 320px;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff4d4d;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e63e3e;
+        }
+
+        #msg {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .signup {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .signup a {
+            color: #ff4d4d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* 👁️ PASSWORD BOX */
+       .password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 45px;
+}
+
+.toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #121212;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="left">
+        <h1>Foodie 🍽️</h1>
+        <p>Order your favorite food anytime</p>
+    </div>
+
+    <div class="right">
+        <div class="login-box">
+            <h2>Customer Login</h2>
+
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required>
+
+                <div class="password-box">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="bi bi-eye toggle-icon" id="icon" onclick="togglePassword()"></i>
+                </div> <button type="submit">Login</button>
+            </form>
+
+            <p id="msg"></p>
+
+            <div class="signup">
+                Don't have an account? <a href="/customer/signup">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", submit);
+
+        // 👁️ SHOW / HIDE PASSWORD
+        const passwordInput = document.getElementById("password");
+        const iconDom = document.getElementById("icon");
+        function togglePassword() {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                iconDom.classList.replace('bi-eye', 'bi-eye-slash')
+            } else {
+                passwordInput.type = "password";
+                iconDom.classList.replace('bi-eye-slash', 'bi-eye')
+            }
+        }
+
+        async function submit(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const msg = document.getElementById("msg");
+
+            try {
+                const res = await fetch("http://localhost:3000/api/customer/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (res.status === 200) {
+                    msg.style.color = "green";
+                    msg.innerText = "Login Success ✅";
+                    window.location.href = "/customer/home";
+                } else {
+                    msg.style.color = "red";
+                    msg.innerText = data;
+                }
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -74,15 +74,7 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
         const result = await queryExec(`select 
-            restaurant_id,
-            name,
-            email,
-            phone,
-            address,
-            owner_name,
-            cuisine_type,
-            is_open,
-            password
+            *
              from restaurants where email = ? `, [email])
         if (result.length === 0) {
             return res.status(404).json('Invalid user')
@@ -92,13 +84,16 @@ router.post('/login', async (req, res) => {
             if (orginalPassword === password) {
                 req.session.IsLogged = true
                 const { password, ...safeuser } = result[0]
-                req.session.user = safeuser
+                req.session.user = {
+                    id: safeuser.id,
+                    role: "restaurant",
+                    data: safeuser
+                }
                 return res.status(200).json("User Logged")
             }
             else {
                 req.session.IsLogged = false
-                req.session.user = {}
-                console.log("invalid password")
+                req.session.user = null
                 return res.status(401).json("Invalid password")
             }
         }

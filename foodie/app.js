@@ -5,6 +5,7 @@ import session from "express-session"
 //import api routers
 import restaurantsApi from "./routers/api/restaurantsApiRouter.js"
 import menuApi from "./routers/api/menuApiRouter.js"
+import customerApi from "./routers/api/customerApiRouter.js"
 //import ui routers 
 
 import restaurantsUi from "./routers/ui/restaurantsUiRouter.js"
@@ -25,12 +26,14 @@ app.use(session({
    saveUninitialized :true,
    resave : true,
    cookie:{
-      maxAge: 30*60*1000
-   }
+cookie: {
+   maxAge: 24 * 60 * 60 * 1000   
+}   }
 }))
 //api router
 app.use("/api/restaurants/",restaurantsApi)
 app.use("/api/menu/",menuApi)
+app.use("/api/customer/",customerApi)
 //ui router
 app.use("/restaurants/",restaurantsUi)
 app.use("/restaurants/menu/",menuUi)

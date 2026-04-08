@@ -12,7 +12,7 @@ router.get("/login", (req, res) => {
 })
 router.get("/dashboard", async (req, res) => {
     try {
-        if (req.session.IsLogged) {
+        if (req.session.IsLogged && req.session.user?.role === "restaurant") {
             const page = 'dashboard'
             const id = req.session.user.restaurant_id
             const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)
@@ -37,7 +37,7 @@ router.get("/dashboard", async (req, res) => {
 
 router.get("/profile", async (req, res) => {
     try {
-        if (req.session.IsLogged) {
+        if (req.session.IsLogged && req.session.user?.role === "restaurant") {
             const page = 'profile'
             const id = req.session.user.restaurant_id
             const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)
@@ -73,7 +73,7 @@ router.get("/register", (req, res) => {
 })
 router.get("/edit", async (req, res) => {
     try {
-        if (req.session.IsLogged) {
+        if (req.session.IsLogged && req.session.user?.role === "restaurant") {
             const page = 'edit'
             const id = req.session.user.restaurant_id
             const response = await fetch(`http://localhost:3000/api/restaurants/${id}`)

@@ -69,10 +69,10 @@
                                         <%data.forEach(item=>{%>
                                             <tr>
                                                 <td>
-                                                    <%=item.food_item%>
+                                                    <%=item.food_name%>
                                                 </td>
                                                 <td>
-                                                    <%=item.prepare_timing%>
+                                                    <%=item.preparing_time%>
                                                 </td>
                                                 <td>
                                                     <%=item.meal_type%>
@@ -84,18 +84,18 @@
                                                     <%=item.sugar%>
                                                 </td>
                                                 <td>
-                                                    <%=item.food_calories%>
+                                                    <%=item.total_calories%>
                                                 </td>
                                                 <td>
                                                     <%=item.price%>
                                                 </td>
                                                 <td class="action">
-                                                    <a href="menu/edit/<%= item.food_Item_id %>"
+                                                    <a href="menu/edit/<%= item.menu_id %>"
                                                         class="text-reset text-decoration-none"
                                                         style="text-decoration: none !important;">
                                                         ✏️
                                                     </a>
-                                                    <button onclick="deleteAdmin(<%=item.food_Item_id%>)"
+                                                    <button onclick="deleteAdmin(<%=item.menu_id%>)"
                                                         class="bg-transparent border deleteIcon">🗑️</button>
                                                 </td>
 
