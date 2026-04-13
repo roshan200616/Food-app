@@ -76,6 +76,36 @@ router.post("/login", async (req, res) => {
         res.status(500).json("server error")
     }
 })
+router.post("/cart",async(req,res)=>{
+    try{
+        const {menu_id,food_name,price,sugar,fat,carbs,protein,total_calories} = req.body
+        const cart = req.session.cart
+        const existing = cart.find(item => item.id == menu_id)   
+
+        if(existing){
+          existing.qty+=1
+        }
+        else{
+            cart.push({
+            id:menu_id,
+            name:food_name,
+            price:price,
+            sugar:sugar,
+            fat:fat,
+            protein:protein,
+            carbs:carbs,
+            calotories:total_calories,
+            qty: 1
+          })
+        }
+        const cartCount = cart.length
+        res.status(200).json(cart)
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json(err.message)
+    }
+})
 router.post('/', async (req, res) => {
     try {
         const { name, email, mobile, password } = req.body

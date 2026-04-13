@@ -1,94 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cart</title>
+<meta charset="UTF-8">
+<title>Cart</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: #212529;
-            color: white;
-        }
+<style>
 
-        .navbar {
-            background: #2f353a;
-        }
+/* GLOBAL */
+body {
+    background: #0f172a;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        .cart-card {
-            background: #2f353a;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
+/* FORCE WHITE TEXT */
+* {
+    color: #ffffff !important;
+}
 
-        .btn-checkout {
-            border-radius: 20px;
-        }
-    </style>
+/* NAVBAR */
+.navbar {
+    background: #1e293b;
+}
+
+/* CARD */
+.card {
+    background: #1e293b !important;
+    border-radius: 16px;
+    border: none;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+/* BADGES */
+.badge {
+    background: #334155;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* QTY BUTTON */
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: transparent;
+}
+
+/* SUMMARY */
+.summary-card {
+    background: #1e293b;
+}
+
+/* EMPTY */
+.empty {
+    text-align: center;
+    margin-top: 100px;
+}
+
+</style>
 </head>
+
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-dark px-4">
     <h4>🛒 Your Cart</h4>
     <a href="/" class="btn btn-success">Back</a>
 </nav>
 
-<!-- Cart Items -->
 <div class="container mt-4">
-    <div id="cartItems"></div>
 
-    <div class="mt-4">
-        <h4>Total Items: <span id="totalItems">0</span></h4>
-        <button class="btn btn-success btn-checkout mt-2">Checkout</button>
+<% if (data.length === 0) { %>
+
+    <div class="empty">
+        <h3>Your cart is empty 😢</h3>
+        <a href="/" class="btn btn-success mt-3">Browse Food</a>
     </div>
+
+<% } else { %>
+
+<div class="row">
+
+    <!-- CART ITEMS -->
+    <div class="col-md-8">
+
+        <% let total = 0; %>
+
+        <% data.forEach(item => { %>
+
+        <div class="card p-3 mb-3">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <!-- LEFT -->
+                <div>
+                    <h5><%= item.name %></h5>
+                    <small>₹<%= item.price %></small>
+
+                    <!-- 🔥 NUTRITION -->
+                    <div class="mt-2 d-flex flex-wrap gap-2">
+                        <span class="badge">Carbs: <%= item.carbs %></span>
+                        <span class="badge">Fat: <%= item.fat %></span>
+                        <span class="badge">Protein: <%= item.protein %></span>
+                        <span class="badge">Calories: <%= item.calories %></span>
+                    </div>
+                </div>
+
+                <!-- QTY -->
+                <div class="d-flex align-items-center gap-2">
+                    <button class="qty-btn"
+                        onclick="updateQty(<%= item.id %>, 'dec')">−</button>
+
+                    <span><%= item.qty %></span>
+
+                    <button class="qty-btn"
+                        onclick="updateQty(<%= item.id %>, 'inc')">+</button>
+                </div>
+
+                <!-- TOTAL -->
+                <div>
+                    <strong>₹<%= item.price * item.qty %></strong>
+                </div>
+
+                <!-- REMOVE -->
+                <button class="btn btn-danger btn-sm"
+                    onclick="removeItem(<%= item.id %>)">
+                    ✕
+                </button>
+
+            </div>
+
+        </div>
+
+        <% total += item.price * item.qty; %>
+
+        <% }) %>
+
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="col-md-4">
+        <div class="card p-4 summary-card sticky-top">
+
+            <h4>Summary</h4>
+            <hr>
+
+            <p>Total Items: <%= data.length %></p>
+            <h5>Total Price: ₹<%= total %></h5>
+
+            <button class="btn btn-success w-100 mt-3">
+                Checkout
+            </button>
+
+        </div>
+    </div>
+
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<% } %>
+
+</div>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const cartContainer = document.getElementById("cartItems");
-    const totalItems = document.getElementById("totalItems");
+function removeItem(id) {
+    fetch('/api/customer/remove-cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+        credentials: 'include'
+    }).then(() => location.reload());
+}
 
-    function loadCart() {
-        cartContainer.innerHTML = "";
+function updateQty(id, action) {
+    fetch('/api/customer/update-cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action }),
+        credentials: 'include'
+    }).then(() => location.reload());
+}
 
-        if (cart.length === 0) {
-            cartContainer.innerHTML = "<p>Your cart is empty 😢</p>";
-            totalItems.innerText = 0;
-            return;
-        }
-
-        cart.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.classList.add("cart-card");
-
-            div.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5>${item}</h5>
-                    <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button>
-                </div>
-            `;
-
-            cartContainer.appendChild(div);
-        });
-
-        totalItems.innerText = cart.length;
-    }
-
-    function removeItem(index) {
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        loadCart();
-    }
-
-    loadCart();
 </script>
 
 </body>

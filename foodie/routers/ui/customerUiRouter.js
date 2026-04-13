@@ -16,13 +16,11 @@ router.get('/home', async (req, res) => {
 
             const id = req.session.user.id
             const page = 'home'
-            // const cusResponse = await fetch(`http://localhost:3000/api/customer/${id}`)
 
             const response = await fetch("http://localhost:3000/api/menu")
             if (response.status === 200){
                 const data = await response.json()
                 const cusData = req.session.user?.data
-                console.log(cusData)
                 res.render('pages/customer/customerHome.ejs', { data,cusData, page })
 
             }
@@ -45,7 +43,9 @@ router.get('/home', async (req, res) => {
 router.get("/cart", async (req, res) => {
     try {
         const page = "cart"
-        res.render('pages/customer/cart.ejs', { page })
+        const data = req.session.cart
+        console.log(req.session)
+        res.render('pages/customer/cart.ejs', { page,data })
     }
     catch (err) {
         console.log(err)

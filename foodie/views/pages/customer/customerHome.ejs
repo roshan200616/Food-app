@@ -55,7 +55,7 @@
 
         .food-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .food-img {
@@ -103,11 +103,15 @@
             <div class="col-3 profile-sidebar">
 
                 <div class="profile-card">
-                    <img src="https://via.placeholder.com/80" class="profile-img">
+                    <!-- <img src="https://via.placeholder.com/80" class="profile-img"> -->
 
-                    <h5><%= cusData.name%></h5>
-                    <p class="text-secondary">mobile:<%= cusData.mobile%></p>
-                   <p class="text-secondary">Email:<%= cusData.email%></p>
+                    <h5>
+                        <%= cusData.name%>
+                    </h5>
+                    <p class="text-secondary">mobile:<%= cusData.mobile%>
+                    </p>
+                    <p class="text-secondary">Email:<%= cusData.email%>
+                    </p>
 
                     <a href="/logout" class="btn btn-danger btn-sm mt-2 w-100">
                         Logout
@@ -123,8 +127,7 @@
                     <h3 class="mb-4 fw-bold">🍽️ Food Menu</h3>
 
                     <div class="row g-4">
-
-                        <%data.forEach(item => { %>
+                        <%data.forEach(item=> { %>
                             <div class="col-md-4 d-flex">
                                 <div class="card food-card w-100">
 
@@ -133,24 +136,40 @@
                                     <div class="card-body d-flex flex-column justify-content-between">
 
                                         <div>
-                                            <h5><%= item.food_name %></h5>
+                                            <h5>
+                                                <%= item.food_name %>
+                                            </h5>
 
                                             <span class="badge mb-2">
-                                                <%= item.meal_type %>
+                                                Sugar:<%= item.sugar %>
+                                            </span>
+                                            <span class="badge mb-2">
+                                                Fat:<%= item.fat %>
+                                            </span>
+                                            <span class="badge mb-2">
+                                                protein:<%= item.protein %>
+                                            </span>
+                                            <span class="badge mb-2">
+                                                carbs:<%= item.carbs %>
+                                            </span>
+                                            <span class="badge mb-2">
+                                               calories:<%= item.calories %>
                                             </span>
 
-                                            <h6>₹<%= item.price %></h6>
+
+
+                                            <h6>₹<%= item.price %>
+                                            </h6>
                                         </div>
 
-                                        <button class="btn btn-success mt-3"
-                                            onclick="addToCart('<%= item.food_name %>')">
+                                        <button class="btn btn-success mt-3" onclick="addToCart('<%= item.menu_id %>')">
                                             Add to Cart
                                         </button>
 
                                     </div>
                                 </div>
                             </div>
-                        <% }) %>
+                            <% }) %>
 
                     </div>
                 </div>
@@ -173,24 +192,50 @@
 
 </body>
 
+
 <script>
-    let cart = []
+    const foods = <%- JSON.stringify(data) %>
+        function showToast(message) {
+            const toastEl = document.getElementById('myToast');
+            const toastMsg = document.getElementById('toastMsg');
 
-    function showToast(message) {
-        const toastEl = document.getElementById('myToast');
-        const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = message;
 
-        toastMsg.innerText = message;
+            const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+            toast.show();
+        }
 
-        const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
-        toast.show();
+    function addToCart(id) {
+        const item = foods.find(food => food.menu_id == id);
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Cookie", "connect.sid=s%3AYs9pwpGlTQiUqMjk6SBfZpFSBLrO12eh.VZIqrNLMyc0KEwVbX8ftvwf6yo3vYL633%2Fy6xDQlDsM");
+        const raw = JSON.stringify(item);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+        try {
+            fetch("http://localhost:3000/api/customer/cart", requestOptions)
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        const data = await response.json()
+                        document.getElementById("cartCount").innerText = data.length
+                    }
+                    else {
+                        const error = await response.text()
+                        console.log(error)
+                    }
+                })
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
-    function addToCart(food) {
-        cart.push(food)
-        document.getElementById("cartCount").innerText = cart.length
-        showToast(food + " added to cart ✅")
-    }
 </script>
 
 </html>
