@@ -44,7 +44,6 @@ router.get("/cart", async (req, res) => {
     try {
         const page = "cart"
         const data = req.session.cart
-        console.log(req.session)
         res.render('pages/customer/cart.ejs', { page,data })
     }
     catch (err) {

@@ -1,6 +1,5 @@
 import express from "express";
 import queryExec from "../../DBconnection.js"
-import e from "express";
 
 const router = express.Router()
 
@@ -19,22 +18,21 @@ router.get("/", async (req, res) => {
         res.status(500).json("server error")
     }
 })
-router.get("/:id",async(req,res)=>{
-    try{
-      const id = req.params.id
-      console.log(id)
-      const result = await queryExec(`select * from customers where id =?`,[id])
-      console.log(result)
-      if(result.length === 0){
-        res.status(404).json("not found")
-        return
-      }
+router.get("/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        const result = await queryExec(`select * from customers where id =?`, [id])
 
-      else{
-       res.status(200).json(result[0])
-      }
+        if (result.length === 0) {
+            res.status(404).json("not found")
+            return
+        }
+
+        else {
+            res.status(200).json(result[0])
+        }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         res.status(500).json("server error")
     }
@@ -49,12 +47,12 @@ router.post("/login", async (req, res) => {
         else {
             const orginalPassword = result[0].password
             if (orginalPassword === password) {
-                req.session.IsLogged= true
+                req.session.IsLogged = true
                 const { password, ...safeuser } = result[0]
                 req.session.user = {
-                    id:safeuser.id,
-                    role:"customer",
-                    data:safeuser
+                    id: safeuser.id,
+                    role: "customer",
+                    data: safeuser
 
                 }
                 res.status(200).json("User Logged")
@@ -62,46 +60,49 @@ router.post("/login", async (req, res) => {
 
 
             }
-            else{
+            else {
                 req.session.IsLogged = false
-                req.session.user =null
+                req.session.user = null
                 res.status(401).json("invalid password")
                 return
             }
         }
-        
+
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         res.status(500).json("server error")
     }
 })
-router.post("/cart",async(req,res)=>{
-    try{
-        const {menu_id,food_name,price,sugar,fat,carbs,protein,total_calories} = req.body
+router.post("/cart", async (req, res) => {
+    try {
+        const { menu_id, food_name, price, sugar, fat, carbs, protein, total_calories } = req.body
         const cart = req.session.cart
-        const existing = cart.find(item => item.id == menu_id)   
 
-        if(existing){
-          existing.qty+=1
+        const existing = cart.find(item => item.id == menu_id)
+
+        if (existing) {
+            existing.qty += 1
         }
-        else{
+        else {
             cart.push({
-            id:menu_id,
-            name:food_name,
-            price:price,
-            sugar:sugar,
-            fat:fat,
-            protein:protein,
-            carbs:carbs,
-            calotories:total_calories,
-            qty: 1
-          })
+                id: menu_id,
+                name: food_name,
+                price: price,
+                sugar: sugar,
+                fat: fat,
+                protein: protein,
+                carbs: carbs,
+                calories: total_calories,
+                qty: 1
+            })
         }
         const cartCount = cart.length
+
         res.status(200).json(cart)
+
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         res.status(500).json(err.message)
     }
@@ -137,6 +138,42 @@ router.post('/', async (req, res) => {
         res.status(500).json("server error")
     }
 })
+router.put("/update-cart/:id", async (req, res) => {
+    try {
+        const menu_id = parseInt(req.params.id);
+        const { action } = req.body;
+        const cart = req.session.cart || [];
+        const existing = cart.find(item => item.id === menu_id);
+        if (action === 'inc') {
+            existing.qty += 1
+        }
+        else {
+            existing.qty -= 1
+        }
+        if (existing.qty === 0) {
+            req.session.cart = cart.filter(item => (item.id !== menu_id))
+            
+            return res.status(200).json({
+                success: true,
+                message: "Item removed from cart",
+                data: null
+            });
+        }
+        req.session.cart = cart
+        return res.status(200).json({
+        success: true,
+        message: "Cart updated",
+        data: existing
+    });
+
+} catch (err) {
+    console.log(err);
+    return res.status(500).json({
+        success: false,
+        message: "Server error"
+    });
+}
+});
 router.put("/:id", async (req, res) => {
     try {
         const data = req.body
@@ -157,22 +194,33 @@ router.put("/:id", async (req, res) => {
         res.status(500).json("server error")
     }
 })
-router.delete("/:id",async(req,res)=>{
-    try{
+router.delete("/remove-cart/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    let cart = req.session.cart || [];
+    req.session.cart = cart.filter(item => item.id !== id);
+
+    res.json({
+        success: true,
+        message: "Item removed",
+        data: req.session.cart
+    });
+});
+router.delete("/:id", async (req, res) => {
+    try {
         const id = req.params.id
-        const result = await queryExec(`delete from customers where id = ?`,[id])
-        if(result.affectedRows === 0){
+        const result = await queryExec(`delete from customers where id = ?`, [id])
+        if (result.affectedRows === 0) {
             res.status(404).json("not found")
             return
-        } 
-        else{
+        }
+        else {
             res.status(200).json("deleted successfully")
             return
         }
     }
-    catch(err){
-       console.log(err)
-       res.status(500).json("server error")
+    catch (err) {
+        console.log(err)
+        res.status(500).json("server error")
     }
 })
 export default router

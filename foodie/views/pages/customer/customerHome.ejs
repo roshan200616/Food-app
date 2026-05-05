@@ -153,7 +153,7 @@
                                                 carbs:<%= item.carbs %>
                                             </span>
                                             <span class="badge mb-2">
-                                               calories:<%= item.calories %>
+                                               calories:<%= item.total_calories %>
                                             </span>
 
 
@@ -224,6 +224,7 @@
                     if (response.status === 200) {
                         const data = await response.json()
                         document.getElementById("cartCount").innerText = data.length
+                        console.log(data)
                     }
                     else {
                         const error = await response.text()
